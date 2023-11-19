@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Dutch Municipality</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.3s;
+}
+nav a:hover {
+  opacity: 0.7;
+}
+
+main {
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Dutch Municipality</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#signup">Sign Up</a></li>
+        <li><a href="#complaints">Submit Complaints</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Welcome to Dutch Municipality</h2>
+      <p>Explore and engage with your community.</p>
+    </section>
+
+    <section id="login" class="hidden">
+      <h2>Login</h2>
+      <!-- Login form goes here -->
+    </section>
+
+    <section id="signup" class="hidden">
+      <h2>Sign Up</h2>
+      <!-- Sign-up form goes here -->
+    </section>
+
+    <section id="complaints" class="hidden">
+      <h2>Submit Complaints</h2>
+      <!-- Complaints form goes here -->
+    </section>
+  </main>
+
+  <script src="config/js/spa.js"></script>
+</body>
+</html>
