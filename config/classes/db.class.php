@@ -14,9 +14,9 @@
         // Use the (secure)Database Connection
         private function linkage() {
             try {
-                $this->conn = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8mb4;sslmode=require',$this->user,$this->pwd);
+                $this->conn = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8mb4',$this->user,$this->pwd);
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                return $this->conn;
+                return $this->conn; 
                 
             } catch (PDOException $e) {
                 // Log the exception details
