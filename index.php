@@ -73,8 +73,8 @@
         <input type="text" id="surname" name="surname"><br>
         <label for="email">Email</label><br>
         <input type="text" id="email" name="email"><br>
-        <label for="place">Locatie</label><br>
-        <input type="text" id="place" name="place"><br><br>
+        <label for="location">Locatie</label><br>
+        <input type="text" id="location" name="location"><br><br>
         <div id="map" style = "width:500px; aspect-ratio:16/9;"></div><br>
         <input type="submit" value="Verzenden">
       </form> 
