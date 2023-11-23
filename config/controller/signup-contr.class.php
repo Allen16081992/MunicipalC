@@ -1,15 +1,18 @@
 <?php
+include_once '././include/session_manager.conf.php';
+require_once 'errorchecks.contr.php';
 class SignupContr extends Signup{
+    use InputCheck;
     private $uid;
+    private $email;
     private $pwd;
     private $pwdRepeat;
-    private $email;
 
-    public function __construct($uid, $pwd, $pwdRepeat, $email) {
+    public function __construct($uid, $email, $pwd, $pwdRepeat) {
         $this->uid = $uid;
+        $this->email = $email;
         $this->pwd = $pwd;
         $this->pwdRepeat = $pwdRepeat;
-        $this->email = $email;
     }
 
     public function signupUser() {
@@ -24,9 +27,9 @@ class SignupContr extends Signup{
             exit();
        }
        if($this->invalidEmail() == false) {
-        // echo "invalid email!";
-        header("location: ../index.php?error=email");
-        exit();
+            // echo "invalid email!";
+            header("location: ../index.php?error=email");
+            exit();
         }
         if($this->pwdMatch() == false) {
             // echo "password don't matcht!";
@@ -34,9 +37,9 @@ class SignupContr extends Signup{
             exit();
        }
        if($this->uidTakenCheck() == false) {
-        // echo "Username or email taken!";
-        header("location: ../index.php?error=useroremailtaken");
-        exit();
+            // echo "Username or email taken!";
+            header("location: ../index.php?error=useroremailtaken");
+            exit();
         }
 
         $this->setUser($this->uid, $this->pwd, $this->email);

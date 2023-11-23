@@ -2,7 +2,7 @@
 class Login extends Dbh {
    
     protected function getUser($uid, $pwd) {
-        $stmt = $this->connect()->prepare('INSERT INTO users (users_uid, users_pwd, users_email) VALUES (?, ?, ?);');
+        $stmt = $this->connect()->prepare('INSERT INTO users (ID, password, email) VALUES (?, ?, ?);');
 
         
         if(!$stmt->execute(array($uid, $pwd))) {

@@ -5,12 +5,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $surname = $_POST['surname'];
     $email = $_POST['email'];
     $gps = $_POST['location'];
-    $db;
 
     // Initialise signup class
-    require_once "classes/flex_complaint.class.php";
-    require_once "controller/flex_complaint.control.php";
+    require_once "classes/complaint.class.php";
+    require_once "controller/complaint-contr.class.php";
 
     $complaint = new ComplaintControl($name, $surname, $email, $gps, $db);
-    $complaint->dbSwitcher();
+    $complaint->verifyComplaint();
 }

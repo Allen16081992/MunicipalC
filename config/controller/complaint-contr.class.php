@@ -1,41 +1,18 @@
 <?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
-    //require_once '././peripherals/session_management.config.php';
+    require_once '././classes/complaint.class.php';
     require_once 'errorchecks.control.php';
 
     class ComplaintControl extends Complaint {
-        use ErrorCheckers;
-
+        // Consolidate properties
+        use InputCheck;
         private $name; 
         private $surname;
         private $email;
         private $gps;
         private $db;
 
-        public function dbSwitcher() {
-            try { // Try the high security database connection
-                require_once 'db.class.php';
-
-                // Create instance of Database
-                $this->db = new Database();
-                return $this->db->__construct();
-
-            } catch (PDOException $e) { // Log the exception details
-                error_log("High security connection failed: " . $e->getMessage(), 0);
-
-                // Try the regular database connection
-                require_once 'database.class.php';
-
-                // Create instance of Database
-                $this->db = new Database();
-                return $this->db->connect();
-            }
-
-            // Whichever connection works, call this
-            $this->flexComplaint();
-        }
-
-        private function flexComplaint() {
+        public function verifyComplaint() {
             if(!$this->emptyNames()) {
                 // No firstname or lastname provided.
                 $_SESSION['error'] = 'No firstname or lastname provided.';
@@ -52,10 +29,7 @@
                 // Invalid username.
                 $_SESSION['error'] = 'Only alphanumeric characters allowed!';
             } else {
-                $this->setComplaint(
-                    $this->name, $this->surname, 
-                    $this->email, $this->gps
-                );
+                $this->dbSwitcher();
             }
         }      
     }

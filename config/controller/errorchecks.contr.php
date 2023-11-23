@@ -1,5 +1,10 @@
 <?php // Dhr. Allen Pieter
-    trait ErrorCheckers {
+    trait InputCheck {
+
+        private function emptyInput() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->uid));
+        }
 
         private function emptyNames() {
             // Make sure the submitted values are not empty.

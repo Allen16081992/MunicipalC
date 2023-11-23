@@ -4,16 +4,15 @@ if (isset($_POST["submit"])){
 
     // grabbing the data
     $uid = $_POST["uid"];
+    $email = $_POST["email"];
     $pwd = $_POST["pwd"];
     $pwdrepeat = $_POST["pwdrepeat"];
-    $email = $_POST["email"];
 
     // instantiate signupContr class
-    include "../classes/dbh.classes.php";
-    include "../classes/signup.classes.php";
-    include "../classes/signup-contr.classes.php";
-    $signup = new SignupContr($uid, $pwd, $pwdRepeat, $email);
-
+    include "classes/dbh.class.php";
+    include "classes/signup.class.php";
+    include "controller/signup-contr.class.php";
+    $signup = new SignupContr($uid, $email, $pwd, $pwdRepeat);
 
     // running error handlers and users
     $signup->signupUser();

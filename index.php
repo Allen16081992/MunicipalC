@@ -24,7 +24,7 @@
             echo '
                 <li><a class="current">'.$_SESSION['user_name'].'</a></li>
                 <li><a href="#manage">Management</a></li>
-                <li><a href="config/logout.php">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             ';
         } ?>
       </ul>
@@ -40,11 +40,11 @@
     <section id="login" class="hidden">
       <h2>Inloggen</h2>
       <!-- Login form goes here -->
-      <form action="" method="post">
-        <label for="gebruiker">Gebruiker</label><br>
-        <input type="text" id="gebruiker" name="gebruiker"><br>
+      <form action="config/includes/login.conf.php" method="post">
+        <label for="uid">Gebruiker</label><br>
+        <input type="text" id="uid" name="uid"><br>
         <label for="pwd">Wachtwoord</label><br>
-        <input type="password" id="pwd" name="pwd"><br><br>
+        <input type="password" id="pwd" name="pwd"><br>
         <input type="submit" value="Inloggen">
       </form> 
     </section>
@@ -52,13 +52,15 @@
     <section id="signup" class="hidden">
       <h2>Registreren</h2>
       <!-- Sign-up form goes here -->
-      <form action="" method="post">
-        <label for="gebruiker">Gebruiker</label><br>
-        <input type="text" id="gebruiker" name="gebruiker"><br>
+      <form action="config/includes/signup.conf.php" method="post">
+        <label for="uid">Gebruiker</label><br>
+        <input type="text" id="uid" name="uid"><br>
         <label for="email">Email</label><br>
-        <input type="text" id="email" name="email"><br>
+        <input type="text" name="email" placeholder="E-mail"><br>
         <label for="pwd">Wachtwoord</label><br>
-        <input type="password" id="pwd" name="pwd"><br><br>
+        <input type="password" id="pwd" name="pwd"><br>
+        <label for="pwdrepeat">Herhaal Wachtwoord</label><br>
+        <input type="text" name="pwdrepeat" placeholder="Repeat Password"><br><br>
         <input type="submit" value="Registreren">
       </form> 
     </section>
@@ -66,7 +68,7 @@
     <section id="complaints" class="hidden">
       <h2>Submit Complaints</h2>
       <!-- Complaints form goes here -->
-      <form action="" method="post">
+      <form action="includes/complaint.inc.php" method="post">
         <label for="name">Naam</label><br>
         <input type="text" id="name" name="name"><br>
         <label for="surname">Achternaam</label><br>
