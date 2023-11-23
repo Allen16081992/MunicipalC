@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
   <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-  <title>Dutch Municipality</title>
+  <title>Home | Gemeente Havenburg</title>
+  <!-- Favicon -->
+  <?php include_once 'config/include/favicon.php';?>
 </head>
 
 <body>
   <header>
-    <h1>Dutch Municipality</h1>
+    <div class="logo-container">
+      <a href="index.php"><img src="img/MunicCrest.png" height="40" alt="Brand Signature"></a>
+    </div>
+    <h1>Gemeente Havenburg</h1>
     <nav>
       <ul>
         <?php if(!isset($_SESSION['user_id'])) { ?>
-            <li><a href="#home"><img src="#" alt="Brand Signature"></a></li>
             <li><a href="#home">Home</a></li>
             <li><a href="#login">Inloggen</a></li>
             <li><a href="#signup">Registreren</a></li>
@@ -33,7 +36,7 @@
 
   <main>
     <section id="home">
-      <h2>Welcome to Dutch Municipality</h2>
+      <h2>Welcome to Gemeente Havenburg</h2>
       <p>Explore and engage with your community.</p>
     </section>
 
