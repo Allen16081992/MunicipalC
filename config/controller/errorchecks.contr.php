@@ -1,7 +1,7 @@
 <?php // Dhr. Allen Pieter
     trait InputCheck {
 
-        private function emptyInput() {
+        private function emptyUid() {
             // Make sure the submitted values are not empty.
             return !(empty($this->uid));
         }
@@ -37,16 +37,16 @@
 
         private function emptyPassw() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->passw));
+            return !(empty($this->pwd));
         }
 
         private function emptyPasswords() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->passw) || empty($this->passwRepeat));
+            return !(empty($this->pwd) || empty($this->pwdRepeat));
         }
 
         private function passwMatcher() {
             // Make sure the submitted values are equal.
-            return $this->passw === $this->passwRepeat;
+            return $this->pwd === $this->pwdRepeat;
         }
     }

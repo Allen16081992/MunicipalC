@@ -6,7 +6,7 @@ if (isset($_POST["submit"])){
     $uid = $_POST["uid"];
     $email = $_POST["email"];
     $pwd = $_POST["pwd"];
-    $pwdrepeat = $_POST["pwdrepeat"];
+    $pwdRepeat = $_POST["pwdRepeat"];
 
     // instantiate signupContr class
     include "classes/dbh.class.php";
@@ -19,5 +19,6 @@ if (isset($_POST["submit"])){
     
     // going to back to front page
     header("location: ../index.php?error=none");
+    exit();
 }
 ?>

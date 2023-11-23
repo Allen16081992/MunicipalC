@@ -40,7 +40,7 @@
     <section id="login" class="hidden">
       <h2>Inloggen</h2>
       <!-- Login form goes here -->
-      <form action="config/includes/login.conf.php" method="post">
+      <form action="config/login.conf.php" method="post">
         <label for="uid">Gebruiker</label><br>
         <input type="text" id="uid" name="uid"><br>
         <label for="pwd">Wachtwoord</label><br>
@@ -52,16 +52,16 @@
     <section id="signup" class="hidden">
       <h2>Registreren</h2>
       <!-- Sign-up form goes here -->
-      <form action="config/includes/signup.conf.php" method="post">
+      <form action="config/signup.conf.php" method="post">
         <label for="uid">Gebruiker</label><br>
         <input type="text" id="uid" name="uid"><br>
         <label for="email">Email</label><br>
         <input type="text" name="email" placeholder="E-mail"><br>
         <label for="pwd">Wachtwoord</label><br>
         <input type="password" id="pwd" name="pwd"><br>
-        <label for="pwdrepeat">Herhaal Wachtwoord</label><br>
-        <input type="text" name="pwdrepeat" placeholder="Repeat Password"><br><br>
-        <input type="submit" value="Registreren">
+        <label for="pwdRepeat">Herhaal Wachtwoord</label><br>
+        <input type="password" name="pwdRepeat" placeholder="Repeat Password"><br><br>
+        <button type="submit" name="submit">Registreren</button>
       </form> 
     </section>
 
