@@ -1,57 +1,108 @@
- 
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  nav {
-    margin-top: 10px;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin: 0 15px;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #fff;
-    transition: opacity 0.3s;
-  }
-  nav a:hover {
-    opacity: 0.7;
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  .hidden {
-    display: none;
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  /* Additional styling for the logo and heading */
-  .logo-container {
-      display: inline-block;
-      vertical-align: middle;
-  }
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
 
+.logo-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+h1 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+main {
+  padding: 20px;
+  text-align: center; /* Center the content */
+}
+
+.current {
+  font-style: oblique;
+}
+
+.server-error {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: crimson;
+  border-bottom: 2px solid crimson; 
+  padding: 5px 25px;
+  max-width: 100%; margin-bottom: 5px;
+}
+
+.server-success {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(20, 220, 77);
+  border-bottom: 2px solid rgb(20, 220, 77); 
+  padding: 5px 25px;
+  max-width: 100%; margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+#map {
+  height: 400px; /* Set a fixed height or adjust as needed */
+  max-width: 100%; /* Make the map responsive */
+  width: 60%; /* Set a default width */
+  margin: 20px auto; /* Center the map horizontally */
+  border-radius: 15px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: silver;
+}
+
+/* Responsive styling */
+@media (orientation: portrait) {
   h1 {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px; /* Adjust the margin as needed */
+    font-size: 1.50rem; /* Adjust the font size for smaller screens */
   }
+  #map {
+      width: 90%; /* Adjust the width for portrait orientation */
+  }
+}
+
+@media (orientation: landscape) {
+  #map {
+      width: 50%; /* Adjust the width for landscape orientation */
+  }
+}

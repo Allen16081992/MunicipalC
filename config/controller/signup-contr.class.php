@@ -1,10 +1,10 @@
-<?php
-// Loubna Faress
-include_once '././include/session_manager.conf.php';
+<?php // Loubna Faress
 require_once 'errorchecks.contr.php';
 
 class SignupContr extends Signup{
-    use InputCheck;
+    use InputCheck; // errorchecks.contr.php
+
+    // properties
     private $uid;
     private $email;
     private $pwd;
@@ -31,11 +31,11 @@ class SignupContr extends Signup{
             header("location: ../index.php?error=passwordmatch");
             exit();
         }
+        if (!$this->uidTakenCheck()) {
+            header("location: ../index.php?error=user_creation_denied");
+            exit();
+        }
         $this->setUser($this->uid, $this->pwd, $this->email);
-    }
-
-    private function uidTakenCheck() {
-        return $this->checkUser($this->uid, $this->email);
     }
 }
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php // Loubna Faress
 
 if (isset($_POST["submit"])){
 
@@ -9,7 +9,7 @@ if (isset($_POST["submit"])){
     $pwdRepeat = $_POST["pwdRepeat"];
 
     // instantiate signupContr class
-    include "classes/dbh.class.php";
+    include "classes/secure-db.class.php";
     include "classes/signup.class.php";
     include "controller/signup-contr.class.php";
     $signup = new SignupContr($uid, $email, $pwd, $pwdRepeat);

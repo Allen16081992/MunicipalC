@@ -49,4 +49,8 @@
             // Make sure the submitted values are equal.
             return $this->pwd === $this->pwdRepeat;
         }
+
+        private function uidTakenCheck() {
+            return $this->checkUser($this->uid, $this->email);
+        }
     }

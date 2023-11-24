@@ -1,5 +1,4 @@
-<?php
-
+<?php // Loubna Faress
 if (isset($_POST["submit"])){
 
     // grabbing the data
@@ -7,9 +6,9 @@ if (isset($_POST["submit"])){
     $pwd = $_POST["pwd"];
 
     // instantiate signupContr class
-    include "../classes/dbh.class.php";
-    include "../classes/login.class.php";
-    include "../controller/login-contr.class.php";
+    include "classes/dbh.class.php";
+    include "classes/login.class.php";
+    include "controller/login-contr.class.php";
     $login = new LoginContr($uid, $pwd);
 
     // running error handlers and users
@@ -17,5 +16,6 @@ if (isset($_POST["submit"])){
 
     // going to back to front page
     header("location: ../index.php?error=none");
+    exit();
 }
 ?>

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     // Get all navigation buttons
     var navButtons = document.querySelectorAll('nav ul li a');
@@ -16,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
         var selectedSection = document.getElementById(sectionId);
         if (selectedSection) {
             selectedSection.classList.remove('hidden');
+
+            // If the selected section is "complaints", initialize the map
+            if (sectionId === 'complaints') {
+                initializeMap();
+            }
         }
     }
 
@@ -25,12 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             var sectionId = button.getAttribute('data-section');
             showSection(sectionId);
-
-            // Check if the button clicked is the Logout button
-            if (sectionId === 'logout') {
-                // Redirect to logout.php
-                window.location.href = 'logout.php';
-            }
         });
     });
+
+    // Leaflet map initialization script
+    function initializeMap() {
+        var map = L.map('map').setView([51.5735, 3.8396], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    }
 });
