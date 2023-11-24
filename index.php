@@ -1,13 +1,27 @@
+<!-- Include Leaflet from CDN -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <title>Home | Gemeente Havenburg</title>
   <!-- Favicon -->
   <?php include_once 'config/include/favicon.php';?>
+  <style>
+        #map {
+            height: 400px;
+            width: 50%;
+            margin:20px;
+            border-radius: 15px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: silver;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,14 +33,14 @@
     <nav>
       <ul>
         <?php if(!isset($_SESSION['user_id'])) { ?>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#login">Inloggen</a></li>
-            <li><a href="#signup">Registreren</a></li>
-            <li><a href="#complaints">Melding Maken</a></li>
+            <li><a href="#" data-section="home">Home</a></li>
+            <li><a href="#" data-section="login">Inloggen</a></li>
+            <li><a href="#" data-section="signup">Registreren</a></li>
+            <li><a href="#" data-section="complaints">Melding Maken</a></li>
         <?php } else {
             echo '
                 <li><a class="current">'.$_SESSION['user_name'].'</a></li>
-                <li><a href="#manage">Management</a></li>
+                <li><a href="#" data-section="manage">Management</a></li>
                 <li><a href="logout.php">Logout</a></li>
             ';
         } ?>
@@ -34,7 +48,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="content-container">
     <section id="home">
       <h2>Welcome to Gemeente Havenburg</h2>
       <p>Explore and engage with your community.</p>
@@ -86,25 +100,33 @@
     </section>
   </main>
 
-  <script src="config/js/spa.js"></script>
-  <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script>
-        // Creating map options
-        var mapOptions = {
-            center: [17.385044, 78.486671],
-            zoom: 10
-        }
-        
-        // Creating a map object
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        
-        // Creating a Layer object
-        var layer = new L.TileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png');
+        var map = L.map('map').setView([0, 0], 14); // Initial view at (0, 0)
 
-        L.marker([51.5, -0.09]).addTo(map).bindPopup('A pretty CSS popup.').openPopup();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-        // Adding layer to the map
-        map.addLayer(layer);
+        var marker;
+
+        document.getElementById('track-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var latitude = parseFloat(document.getElementById('latitude').value);
+            var longitude = parseFloat(document.getElementById('longitude').value);
+
+            if (!isNaN(latitude) && !isNaN(longitude)) {
+                if (marker) {
+                    marker.setLatLng([latitude, longitude]).update();
+                } else {
+                    marker = L.marker([latitude, longitude]).addTo(map);
+                }
+
+                map.setView([latitude, longitude], 14);
+            } else {
+                alert('Please enter valid coordinates.');
+            }
+        });
   </script>
+  <script defer src="config/js/spa.js"></script>
 </body>
 </html>
