@@ -6,7 +6,7 @@ if (isset($_POST["submit"])){
     $pwd = $_POST["pwd"];
 
     // instantiate signupContr class
-    include "classes/dbh.class.php";
+    include "classes/secure-db.class.php";
     include "classes/login.class.php";
     include "controller/login-contr.class.php";
     $login = new LoginContr($uid, $pwd);

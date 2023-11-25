@@ -77,17 +77,21 @@
                 <section id="complaints" class="hidden">
                     <h2>Submit Complaints</h2>
                     <!-- Complaints form goes here -->
-                    <form action="includes/complaint.inc.php" method="post">
+                    <form action="config/complaint.conf.php" method="post">
                         <label for="name">Naam</label>
                         <input type="text" id="name" name="name">
                         <label for="surname">Achternaam</label>
                         <input type="text" id="surname" name="surname">
                         <label for="email">Email</label>
                         <input type="text" id="email" name="email">
+                        <label for="complaint">Klacht</label>
+                        <input type="text" id="complaint" name="complaint">
+                        <label for="desc">Beschrijving</label>
+                        <textarea id="desc" name="desc" rows="4" cols="50"></textarea>
                         <label for="location">Locatie</label>
-                        <input type="text" id="location" name="location"><br>
+                        <input type="text" id="location" name="location">
                         <div id="map"></div>
-                        <input type="submit" value="Verzenden">
+                        <button type="submit" name="creCom">Verzenden</button>
                     </form> 
                 </section>            
             ';

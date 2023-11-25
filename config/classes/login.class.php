@@ -1,7 +1,10 @@
 <?php // Loubna Faress
-require_once '././include/session_manager.inc.php';
-class Login extends Dbh {
-   
+  require_once '././include/session_manager.inc.php';
+  require_once '././controller/errorchecks.contr.php';
+
+  class Login extends Database {
+    use InputCheck;
+
     protected function getUser($uid, $pwd) {
       //$stmt = $this->connect()->prepare('INSERT INTO users (ID, password, email) VALUES (?, ?, ?);');
       
@@ -30,13 +33,8 @@ class Login extends Dbh {
         exit();
       }
 
-      if($stmt->rowCount() == 0) {
-        // User not found, go to homepage
-        $stmt = null;
-        $_SESSION['error'] = 'User not found.';
-        header("location: ../index.php?error=loginfailed");
-        exit();  
-      }
+      // If this 'trait' fails, kick back to homepage.
+      $this->BindLoubna($stmt); 
 
       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $checkPwd = password_verify($pwd, $user[0]["password"]);
@@ -57,5 +55,5 @@ class Login extends Dbh {
       // Close the statement
       $stmt = null;
     }
-}
+  }
 ?>

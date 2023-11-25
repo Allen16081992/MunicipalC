@@ -11,11 +11,26 @@
             return !(empty($this->name) || empty($this->surname));
         }
 
+        private function emptyEmail() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->email));
+        }
+
+        private function emptyComplaint() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->complaint));
+        }
+
         private function emptyGPS() {
             // Make sure the submitted values are not empty.
             return !(empty($this->gps));
         }
 
+        private function invalidEmail() {
+            // Make sure the submitted values contain an @ character.
+            return filter_var($this->email, FILTER_VALIDATE_EMAIL);
+        }
+        
         private function invalidInput() {
             // Make sure the submitted values contain permitted characters.
             return !(
@@ -23,16 +38,6 @@
                 preg_match("/^[a-zA-Z]*$/", $this->surname) &&
                 preg_match("/^[0-9.,]*$/", $this->gps)
             );
-        }
-
-        private function emptyEmail() {
-            // Make sure the submitted values are not empty.
-            return !(empty($this->email));
-        }
-
-        private function invalidEmail() {
-            // Make sure the submitted values contain an @ character.
-            return filter_var($this->email, FILTER_VALIDATE_EMAIL);
         }
 
         private function emptyPassw() {
@@ -52,5 +57,26 @@
 
         private function uidTakenCheck() {
             return $this->checkUser($this->uid, $this->email);
+        }
+
+        private function BindExecutor($stmt) {
+            if(!$stmt->execute()) {
+                $stmt = null;
+                $_SESSION['error'] = 'Database query failed.';
+                header('location: ../index.php');
+                exit();
+            }
+        }
+
+        // Niks te zien hier
+        private function BindLoubna($stmt) {
+
+            // Als het aantal rijen uit Tabel niets oplevert, ga naar homepage
+            if($stmt->rowCount() == 0) {
+                $stmt = null;
+                $_SESSION['error'] = 'Niets gevonden.';
+                header("location: ../index.php");
+                exit();  
+            }
         }
     }
