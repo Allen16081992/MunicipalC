@@ -96,11 +96,19 @@
                 </section>            
             ';
         } else {
-            echo '
-                <section id="manage">
-                    <h2>Klachten Beheer</h2>
-                    <span>Hier kunt u klachten beheren.</span>
-                </section>
-            ';
+            require_once '././complaint.conf.php';
+            if (!isset($complaint)) {
+                echo '
+                    <section id="manage">
+                        <h2>Klachten Beheer</h2>
+                        <span>Hier kunt u klachten beheren.</span>
+                    </section>
+                ';
+            } else {
+                echo'';
+                <table class="table table-hover table-bordered table-striped">
+                <thead class="table-success">
+                    <tr>
+            }
         }
     }

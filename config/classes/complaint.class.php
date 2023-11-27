@@ -109,12 +109,18 @@
         }
 
         protected function viewComplaints() {
+            $stmt = $this->connect()->prepare("SHOW COLUMNS FROM complaints");
+
+            // If this 'trait' fails, kick back to homepage.
+            $this->BindExecutor($stmt); 
+            $column = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
             $stmt = $this->connect()->prepare('SELECT * FROM complaints');
 
             // If this 'trait' fails, kick back to homepage.
             $this->BindExecutor($stmt); 
-
             $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $list;
+            
+            return $column; return $list;
         }
     }
