@@ -1,19 +1,19 @@
 <?php // Dhr. Allen Pieter
-  require_once "secure-db.class.php";
-    if (!isset($_SESSION)) {
-        session_start();
-    } 
+    require_once "include/session_manager.inc.php";
+    require_once "classes/secure-db.class.php";
+    require_once "controller/errorchecks.contr.php";
   
     class viewComplaints extends Database {
+        use InputCheck;
 
-        public function viewComplaints() {
+        public function allComplaints() {
             try {
                 $stmt = $this->connect()->prepare("SHOW COLUMNS FROM complaints");
-                //$this->BindExecutor($stmt); 
+                $this->BindExecutor($stmt); 
                 $column = $stmt->fetchAll(PDO::FETCH_COLUMN);
             
                 $stmt = $this->connect()->prepare('SELECT * FROM complaints');
-                //$this->BindExecutor($stmt); 
+                $this->BindExecutor($stmt); 
                 $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
                 // Create an associative array to hold both column names and complaint data
@@ -32,4 +32,4 @@
     }
 
     $k = new viewComplaints();
-    $result = $k->viewComplaints();
+    $result = $k->allComplaints();

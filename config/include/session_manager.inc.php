@@ -84,8 +84,8 @@
                         <input type="text" id="surname" name="surname">
                         <label for="email">Email</label>
                         <input type="text" id="email" name="email">
-                        <label for="complaint">Klacht</label>
-                        <input type="text" id="complaint" name="complaint">
+                        <label for="title">Klacht</label>
+                        <input type="text" id="title" name="title">
                         <label for="desc">Beschrijving</label>
                         <textarea id="desc" name="desc" rows="4" cols="50"></textarea>
                         <label for="location">Locatie</label>
@@ -95,7 +95,7 @@
                     </form> 
                 </section>            
             ';
-        } else { buildManager(); }
+        }
     }
 
     function buildManager() {
@@ -107,22 +107,19 @@
                 <thead>
                 <tr>
         ';
-        if (isset($_SESSION['user_id'])) {
-            require_once './config/classes/viewComplaints.conf.php';
-            if (isset($result)) {
-                foreach ($result['columns'] as $column) {
-                    echo "<th>$column</th>";
-                }
+        if (isset($result)) {
+            foreach ($result['columns'] as $column) {
+                echo "<th>$column</th>";
             }
-            echo '</tr></thead><tr>';
-            if (isset($result)) {
-                foreach ($result['complaint'] as $list) {
-                    echo "<td>$list</td>";
-                }
-            }
-            echo '</tr>
-                </table>
-                </section>
-            ';
         }
+        echo '</tr></thead><tr>';
+        if (isset($result)) {
+            foreach ($result['complaint'] as $list) {
+                echo "<td>$list</td>";
+            }
+        }
+        echo '</tr>
+            </table>
+            </section>
+        ';    
     }

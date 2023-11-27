@@ -41,10 +41,13 @@
   <main id="content-container">
     <?php 
       include_once 'config/include/server_messages.inc.php';
-      require_once 'config/classes/viewComplaints.conf.php';
-      //$k = new Complaint();
-      //$result = $k->viewComplaints();
-      buildSections(); 
+      if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
+        buildSections(); 
+      }
+      if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+        require_once 'config/viewComplaints.conf.php';
+        buildManager();
+      }
     ?>
   </main>
 

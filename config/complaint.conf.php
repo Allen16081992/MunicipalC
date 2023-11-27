@@ -11,7 +11,7 @@
             'name' => $_POST['name'],
             'surname' => $_POST['surname'],
             'email' => $_POST['email'],
-            'complaint' => $_POST['complaint'],
+            'title' => $_POST['title'],
             'desc' => $_POST['desc'],
             'location' => $_POST['location']
         ];
@@ -23,7 +23,7 @@
             'name' => $_POST['name'],
             'surname' => $_POST['surname'],
             'email' => $_POST['email'],
-            'complaint' => $_POST['complaint'],
+            'title' => $_POST['title'],
             'desc' => $_POST['desc'],
             'location' => $_POST['location'],
             'comID' => $_POST['comID']
@@ -40,7 +40,7 @@
             'name' => $_POST['name'],
             'surname' => $_POST['surname'],
             'email' => $_POST['email'],
-            'complaint' => $_POST['complaint'],
+            'title' => $_POST['title'],
             'desc' => $_POST['desc'],
             'gps' => $_POST['location'],
             'comID' => $_POST['comID']

@@ -5,36 +5,22 @@
     class Complaint extends Database {
         // Consolidate properties
         use InputCheck;
-        private $name; 
-        private $surname;
-        private $email;
-        private $complaint;
-        private $desc;
-        private $gps;
-        private $comID;
 
-        protected function setComplaint($data) {
+        protected function setComplaint($name, $surname, $email, $title, $desc, $gps, $comID) {
             // Extract values from $data
-            $this->name = $data['name'];
-            $this->surname = $data['surname'];
-            $this->email = $data['email'];
-            $this->complaint = $data['complaint'];
-            $this->desc = $data['desc'];
-            $this->gps = $data['location'];
-            $this->comID = $data['comID'];
 
             // If $comID is provided, it's an update; otherwise, it's a new complaint
-            if ($this->comID !== null) {
+            if ($comID !== null) {
                 // Update the complaint
-                $stmt = $this->connect()->prepare("UPDATE complaints SET name = :name, surname = :surname, email = :email, complaint = :complaint, `desc` = :desc, `location` = :location WHERE comID = :comID;");
-                $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
-                $stmt->bindParam(":surname", $this->surname, PDO::PARAM_STR);
-                $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
-                $stmt->bindParam(":complaint", $this->complaint, PDO::PARAM_STR);
-                $stmt->bindParam(":desc", $this->desc, PDO::PARAM_STR);
+                $stmt = $this->connect()->prepare("UPDATE complaints SET name = :name, surname = :surname, email = :email, title = :title, `desc` = :desc, `location` = :location WHERE comID = :comID;");
+                $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+                $stmt->bindParam(":surname", $surname, PDO::PARAM_STR);
+                $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+                $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+                $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
                 // Watch out, these are numerical values!
-                $stmt->bindParam(":location", $this->gps, PDO::PARAM_INT);
-                $stmt->bindParam(":comID", $this->comID, PDO::PARAM_INT);
+                $stmt->bindParam(":location", $gps, PDO::PARAM_INT);
+                $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
                 $this->BindExecutor($stmt);
@@ -43,14 +29,14 @@
                 $_SESSION['success'] = 'Klacht is bijgewerkt.';
             } else {
                 // Create a new complaint using $data
-                $stmt = $this->connect()->prepare("INSERT INTO complaints (name, surname, email, complaint, `desc`, location) VALUES (:name, :surname, :email, :complaint, :desc, :location);"); 
-                $stmt->bindParam(":name", $this->name, PDO::PARAM_STR);
-                $stmt->bindParam(":surname", $this->surname, PDO::PARAM_STR);
-                $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
-                $stmt->bindParam(":complaint", $this->complaint, PDO::PARAM_STR);
-                $stmt->bindParam(":desc", $this->desc, PDO::PARAM_STR);
+                $stmt = $this->connect()->prepare("INSERT INTO complaints (name, surname, email, title, `desc`, location) VALUES (:name, :surname, :email, :title, :desc, :location);"); 
+                $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+                $stmt->bindParam(":surname", $surname, PDO::PARAM_STR);
+                $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+                $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+                $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
                 // Watch out, these are numerical values!
-                $stmt->bindParam(":location", $this->gps, PDO::PARAM_INT);
+                $stmt->bindParam(":location", $gps, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
                 $this->BindExecutor($stmt);
@@ -61,10 +47,10 @@
         }
 
         protected function deleteComplaint($data) {
-            $this->comID = $data['comID'];
+            $comID = $data['comID'];
 
             $stmt = $this->connect()->prepare('DELETE FROM `complaints` WHERE comID = :comID');
-            $stmt->bindParam(":comID", $this->comID, PDO::PARAM_INT);
+            $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
          
             // If this 'trait' fails, kick back to homepage.
             $this->BindExecutor($stmt);
@@ -76,28 +62,28 @@
         protected function searchComplaint($data) {
             // Extract values from $data
             if (isset($data['name'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `name` = :value');
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `name` = :name');
                 $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
 
             } elseif(isset($data['surname'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `surname` = :value');
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `surname` = :surname');
                 $stmt->bindParam(":surname", $data['surname'], PDO::PARAM_STR);
 
             } elseif(isset($data['email'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `email` = :value');
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE email = :email');
                 $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
 
-            } elseif(isset($data['complaint'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `complaint` = :value');
-                $stmt->bindParam(":complaint", $data['complaint'], PDO::PARAM_STR);
+            } elseif(isset($data['title'])) {
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE title = :title');
+                $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
 
-            } elseif(isset($data['gps'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `location` = :value');
-                $stmt->bindParam(":location", $data['gps'], PDO::PARAM_INT);
+            } elseif(isset($data['location'])) {
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `location` = :location');
+                $stmt->bindParam(":location", $data['location'], PDO::PARAM_INT);
 
             } elseif(isset($data['comID'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `name` = :value');
-                $stmt->bindParam(":name", $data['comID'], PDO::PARAM_INT);
+                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `comID` = :comID');
+                $stmt->bindParam(":comID", $data['comID'], PDO::PARAM_INT);
             }
 
             // If this 'trait' fails, kick back to homepage.

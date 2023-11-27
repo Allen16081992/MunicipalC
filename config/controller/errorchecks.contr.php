@@ -16,9 +16,9 @@
             return !(empty($this->email));
         }
 
-        private function emptyComplaint() {
+        private function emptyTitle() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->complaint));
+            return !(empty($this->title));
         }
 
         private function emptyGPS() {
