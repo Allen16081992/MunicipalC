@@ -95,20 +95,34 @@
                     </form> 
                 </section>            
             ';
-        } else {
-            require_once '././complaint.conf.php';
-            if (!isset($complaint)) {
-                echo '
-                    <section id="manage">
-                        <h2>Klachten Beheer</h2>
-                        <span>Hier kunt u klachten beheren.</span>
-                    </section>
-                ';
-            } else {
-                echo'';
-                <table class="table table-hover table-bordered table-striped">
-                <thead class="table-success">
-                    <tr>
+        } else { buildManager(); }
+    }
+
+    function buildManager() {
+        echo '
+            <section id="manage">
+                <h2>Klachten Beheer</h2>
+                <span>Hier kunt u klachten beheren.</span>
+                <table>
+                <thead>
+                <tr>
+        ';
+        if (isset($_SESSION['user_id'])) {
+            require_once './config/classes/viewComplaints.conf.php';
+            if (isset($result)) {
+                foreach ($result['columns'] as $column) {
+                    echo "<th>$column</th>";
+                }
             }
+            echo '</tr></thead><tr>';
+            if (isset($result)) {
+                foreach ($result['complaint'] as $list) {
+                    echo "<td>$list</td>";
+                }
+            }
+            echo '</tr>
+                </table>
+                </section>
+            ';
         }
     }

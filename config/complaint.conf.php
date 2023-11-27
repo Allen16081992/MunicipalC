@@ -1,7 +1,8 @@
 <?php // Dhr. Allen Pieter
     require_once "classes/secure-db.class.php";
     require_once "classes/complaint.class.php";
-    require_once "controller/complaint-contr.class.php";
+    require_once "controller/complaint.contr.php";
+
     $complaint = new ComplaintControl();
 
     if (isset($_POST['creCom'])) { // Create
@@ -46,10 +47,8 @@
         ];
         $complaint->searchComplaint($data);
 
-    } else { // View All
-        // No submission, just call this function
-        $complaint->viewComplaints();  
-    }
+    } // View All
+    //$complaint->viewComplaints();  
 
     header("location: ../index.php");
     exit();

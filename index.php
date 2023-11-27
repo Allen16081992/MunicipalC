@@ -41,6 +41,9 @@
   <main id="content-container">
     <?php 
       include_once 'config/include/server_messages.inc.php';
+      require_once 'config/classes/viewComplaints.conf.php';
+      //$k = new Complaint();
+      //$result = $k->viewComplaints();
       buildSections(); 
     ?>
   </main>

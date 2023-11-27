@@ -1,6 +1,4 @@
 <?php // Dhr. Allen Pieter
-    require_once '././include/session_manager.inc.php';
-    require_once 'errorchecks.contr.php';
 
     class ComplaintControl extends Complaint {
         // Consolidate properties
@@ -11,10 +9,6 @@
         private $complaint;
         private $desc;
         private $gps;
-
-        // Special properties
-        private $comID;
-        private $data;
 
         public function verifyComplaint($data) {
             // Extract values from $data

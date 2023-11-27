@@ -8,7 +8,7 @@ if (isset($_POST["submit"])){
     // instantiate signupContr class
     include "classes/secure-db.class.php";
     include "classes/login.class.php";
-    include "controller/login-contr.class.php";
+    include "controller/login.contr.php";
     $login = new LoginContr($uid, $pwd);
 
     // running error handlers and users
