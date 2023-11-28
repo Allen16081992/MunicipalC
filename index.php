@@ -46,6 +46,21 @@
       }
       if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         require_once 'config/viewComplaints.conf.php';
+
+        try {
+            $dbFetcher = new DbFetcher();
+            $complaintsData = $dbFetcher->fetchComplaints();
+        
+            if ($complaintsData) {
+                // Here, you can use the data, for example, with the buildManager function
+                buildManager($complaintsData);
+            } else {
+                echo "No complaint data found.";
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        
         buildManager();
       }
     ?>

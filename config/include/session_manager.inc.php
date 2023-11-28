@@ -98,28 +98,29 @@
         }
     }
 
-    function buildManager() {
-        echo '
-            <section id="manage">
-                <h2>Klachten Beheer</h2>
-                <span>Hier kunt u klachten beheren.</span>
-                <table>
+    function buildManager($complaintsData) {
+        echo '<table border="1">
                 <thead>
-                <tr>
-        ';
-        if (isset($result)) {
-            foreach ($result['columns'] as $column) {
-                echo "<th>$column</th>";
-            }
+                    <tr>';
+        
+        // Display column names as table headers
+        foreach ($complaintsData['columns'] as $column) {
+            echo "<th>$column</th>";
         }
-        echo '</tr></thead><tr>';
-        if (isset($result)) {
-            foreach ($result['complaint'] as $list) {
-                echo "<td>$list</td>";
-            }
-        }
+        
         echo '</tr>
-            </table>
-            </section>
-        ';    
+                </thead>
+                <tbody>';
+        
+        // Display complaint data as table rows
+        foreach ($complaintsData['complaints'] as $complaint) {
+            echo '<tr>';
+            foreach ($complaint as $data) {
+                echo "<td>$data</td>";
+            }
+            echo '</tr>';
+        }
+        
+        echo '</tbody>
+            </table>';
     }
