@@ -8,7 +8,7 @@
 
         private function emptyNames() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->name) || empty($this->surname));
+            return !(empty($this->name));
         }
 
         private function emptyEmail() {

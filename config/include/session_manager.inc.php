@@ -78,10 +78,8 @@
                     <h2>Submit Complaints</h2>
                     <!-- Complaints form goes here -->
                     <form action="config/complaint.conf.php" method="post">
-                        <label for="name">Naam</label>
+                        <label for="name">Volledige Naam</label>
                         <input type="text" id="name" name="name">
-                        <label for="surname">Achternaam</label>
-                        <input type="text" id="surname" name="surname">
                         <label for="email">Email</label>
                         <input type="text" id="email" name="email">
                         <label for="title">Klacht</label>
@@ -101,17 +99,16 @@
     function buildManager($complaintsData) {
         echo '<table border="1">
                 <thead>
-                    <tr>';
-        
+                    <tr>
+        ';
         // Display column names as table headers
         foreach ($complaintsData['columns'] as $column) {
             echo "<th>$column</th>";
         }
-        
         echo '</tr>
                 </thead>
-                <tbody>';
-        
+                <tbody>
+        ';
         // Display complaint data as table rows
         foreach ($complaintsData['complaints'] as $complaint) {
             echo '<tr>';
@@ -120,7 +117,7 @@
             }
             echo '</tr>';
         }
-        
         echo '</tbody>
-            </table>';
+            </table>
+        ';
     }

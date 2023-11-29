@@ -9,7 +9,6 @@
         // Store the submitted data in an array
         $data = [
             'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
             'email' => $_POST['email'],
             'title' => $_POST['title'],
             'desc' => $_POST['desc'],
@@ -21,7 +20,6 @@
         // Store the submitted data in an array
         $data = [
             'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
             'email' => $_POST['email'],
             'title' => $_POST['title'],
             'desc' => $_POST['desc'],
@@ -38,7 +36,6 @@
         // Store the submitted data in an array
         $data = [
             'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
             'email' => $_POST['email'],
             'title' => $_POST['title'],
             'desc' => $_POST['desc'],

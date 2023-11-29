@@ -4,7 +4,6 @@
         // Consolidate properties
         use InputCheck;
         private $name; 
-        private $surname;
         private $email;
         private $title;
         private $desc;
@@ -14,7 +13,6 @@
         public function verifyComplaint($data) {
             // Extract values from $data
             $this->name = $data['name'];
-            $this->surname = $data['surname'];
             $this->email = $data['email'];
             $this->title = $data['title'];
             $this->desc = $data['desc'];
@@ -23,7 +21,7 @@
 
             if(!$this->emptyNames()) {
                 // No firstname or lastname provided.
-                $_SESSION['error'] = 'Vul uw naam en achternaam in.';
+                $_SESSION['error'] = 'Vul uw volledige naam in.';
             } elseif(!$this->emptyEmail()) {
                 // No email information provided.
                 $_SESSION['error'] = 'Vul uw email adres in.';
@@ -40,7 +38,7 @@
                 // Invalid username.
                 $_SESSION['error'] = 'Alleen letters en cijfers worden geaccepteerd.';
             } else {
-                $this->setComplaint($this->name, $this->surname, $this->email, $this->title, $this->desc, $this->gps, $this->comID = null);
+                $this->setComplaint($this->name, $this->email, $this->title, $this->desc, $this->gps, $this->comID = null);
             }
         }
     }

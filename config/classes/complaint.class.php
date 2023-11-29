@@ -6,20 +6,25 @@
         // Consolidate properties
         use InputCheck;
 
-        protected function setComplaint($name, $surname, $email, $title, $desc, $gps, $comID) {
-            // Extract values from $data
+        protected function setComplaint($name, $email, $title, $desc, $gps, $comID) {
+            // Split the coordinates using the comma as a delimiter
+            $splitCoords = explode(', ', $gps);
+
+            // Remove any commas in each part
+            $latitude = str_replace(',', '', $splitCoords[0]);
+            $longitude = str_replace(',', '', $splitCoords[1]);
 
             // If $comID is provided, it's an update; otherwise, it's a new complaint
             if ($comID !== null) {
                 // Update the complaint
-                $stmt = $this->connect()->prepare("UPDATE complaints SET name = :name, surname = :surname, email = :email, title = :title, `desc` = :desc, `location` = :location WHERE comID = :comID;");
+                $stmt = $this->connect()->prepare("UPDATE complaints SET name = :name, email = :email, title = :title, `desc` = :desc, lat = :latitude, lon = longitude WHERE comID = :comID;");
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-                $stmt->bindParam(":surname", $surname, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
                 $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
                 // Watch out, these are numerical values!
-                $stmt->bindParam(":location", $gps, PDO::PARAM_INT);
+                $stmt->bindParam(":lat", $latitude, PDO::PARAM_INT);
+                $stmt->bindParam(":lon", $longitude, PDO::PARAM_INT);
                 $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
@@ -29,14 +34,14 @@
                 $_SESSION['success'] = 'Klacht is bijgewerkt.';
             } else {
                 // Create a new complaint using $data
-                $stmt = $this->connect()->prepare("INSERT INTO complaints (name, surname, email, title, `desc`, location) VALUES (:name, :surname, :email, :title, :desc, :location);"); 
+                $stmt = $this->connect()->prepare("INSERT INTO complaints (name, email, title, `desc`, lat, lon) VALUES (:name, :email, :title, :desc, :latitude, :longitude);"); 
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-                $stmt->bindParam(":surname", $surname, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
                 $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
                 // Watch out, these are numerical values!
-                $stmt->bindParam(":location", $gps, PDO::PARAM_INT);
+                $stmt->bindParam(":lat", $latitude, PDO::PARAM_INT);
+                $stmt->bindParam(":lon", $longitude, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
                 $this->BindExecutor($stmt);
@@ -65,10 +70,6 @@
                 $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `name` = :name');
                 $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
 
-            } elseif(isset($data['surname'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `surname` = :surname');
-                $stmt->bindParam(":surname", $data['surname'], PDO::PARAM_STR);
-
             } elseif(isset($data['email'])) {
                 $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE email = :email');
                 $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
@@ -76,10 +77,6 @@
             } elseif(isset($data['title'])) {
                 $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE title = :title');
                 $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
-
-            } elseif(isset($data['location'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `location` = :location');
-                $stmt->bindParam(":location", $data['location'], PDO::PARAM_INT);
 
             } elseif(isset($data['comID'])) {
                 $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `comID` = :comID');
