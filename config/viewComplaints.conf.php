@@ -28,3 +28,6 @@
             }
         }
     }
+
+    $dbFetcher = new DbFetcher();
+    $complaintsData = $dbFetcher->fetchComplaints();

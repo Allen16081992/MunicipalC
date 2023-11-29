@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 27 nov 2023 om 11:17
+-- Gegenereerd op: 29 nov 2023 om 22:17
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -30,12 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `complaints` (
   `comID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `surname` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `complaint` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `desc` text NOT NULL,
-  `location` decimal(10,0) NOT NULL
+  `lat` double NOT NULL,
+  `lon` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `complaints`
+--
+
+INSERT INTO `complaints` (`comID`, `name`, `email`, `title`, `desc`, `lat`, `lon`) VALUES
+(1, 'asdf', 'abc@gmail.com', 'asdfg', 'asdfghsfdgh', 51.58532322347901, 3.775747312019298);
 
 -- --------------------------------------------------------
 
@@ -56,8 +63,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `username`, `password`, `email`, `salt`) VALUES
-(1, 'Stan', '$2y$10$.gszBG0kRMGaMLze4RhO2./pFsRcnVr4RXYzZOl9Ciw.XQ/G2q7LK', 'stan@gmail.com', ''),
-(2, 'Loubna', '$2y$10$j06c/6/PN4wKsTl6DTY/3uD0lwOlUIlTksmgl0IXqtubj9rN5or.6', 'loubna@info.nl', '');
+(1, 'Stan', '$2y$10$.gszBG0kRMGaMLze4RhO2./pFsRcnVr4RXYzZOl9Ciw.XQ/G2q7LK', 'stan@gmail.com', '');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -89,7 +95,7 @@ ALTER TABLE `complaints`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
