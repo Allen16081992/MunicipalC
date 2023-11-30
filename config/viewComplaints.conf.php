@@ -1,7 +1,5 @@
 <?php // Dhr. Allen Pieter
-    //require_once "include/session_manager.inc.php";
     require_once "classes/secure-db.class.php";
-    //require_once "controller/errorchecks.contr.php";
   
     class DbFetcher extends Database {
         public function fetchComplaints() {
@@ -27,7 +25,30 @@
                 throw new Exception("Failed to fetch complaints.");
             }
         }
+
+        public function fetchComplaintsJSON() {
+            try {
+                $stmtComplaints = $this->connect()->prepare('SELECT title, lat, lon FROM complaints');
+                $stmtComplaints->execute();
+                $mapData = $stmtComplaints->fetchAll(PDO::FETCH_ASSOC);
+    
+                // Return JSON-encoded data
+                header('Content-Type: application/json');
+                echo json_encode($mapData);
+            } catch (PDOException $e) {
+                // Log the exception details
+                error_log("Failed to fetch map data: " . $e->getMessage(), 0);
+                // Throw a user-friendly message
+                throw new Exception("Failed to fetch map data.");
+            }
+        }
     }
 
     $dbFetcher = new DbFetcher();
-    $complaintsData = $dbFetcher->fetchComplaints();
+    if (isset($_GET['mapdata'])) {
+        // Check if the 'mapdata' query parameter is present in the URL
+        $dbFetcher->fetchComplaintsJSON();
+    } else {
+        // Otherwise, fetch complaints data
+        $complaintsData = $dbFetcher->fetchComplaints();
+    }

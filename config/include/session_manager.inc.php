@@ -31,7 +31,8 @@
             echo '
                 <ul>
                     <li class="current">'.$_SESSION['user_name'].'</li>
-                    <li>Management</li>
+                    <li><a href="#" data-section="account">Account</a></li>
+                    <li><a href="#" data-section="admin">Klachten</a></li>
                     <li><a href="#" data-section="logout">Logout</a></li>
                 </ul>
             ';                   
@@ -97,7 +98,16 @@
     }
 
     function buildManager($complaintsData) {
-        echo '<table border="1">
+        echo '
+            <section id="account">
+                <h2>Account Beheer</h2>
+                <p>Explore and engage with your community.</p>
+            </section>
+        ';
+        echo '<section id="admin" class="hidden">
+            <h2>Klachten Beheer</h2>
+            <p>Klik op een markering om de klacht van deze locatie te zien.</p>
+            <table border="1">
                 <thead>
                     <tr>
         ';
@@ -119,5 +129,7 @@
         }
         echo '</tbody>
             </table>
+            <div id="map"></div>
+            </section>
         ';
     }

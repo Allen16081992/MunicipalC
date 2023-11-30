@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (sectionId === 'complaints') {
                 initializeMap();
+            } else if (sectionId === 'admin') {
+                initializeMarker();
             }
         }
     }
@@ -42,14 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var locationInput = document.getElementById('location');
             locationInput.value = e.latlng.lat + ', ' + e.latlng.lng;
 
-            // Define a custom icon
-            //var customIcon = L.icon({
-            //    iconUrl: 'path/to/your/icon.png',
-            //    iconSize: [32, 32], // size of the icon
-            //    iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
-            //    popupAnchor: [0, -32] // point from which the popup should open relative to the iconAnchor
-            //});
-
             // Add a marker to the map at the clicked location
             var marker = L.marker(e.latlng).addTo(map);
 
@@ -66,4 +60,46 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    function initializeMarker() {
+        // Initialize the map globally
+        var map = L.map('map').setView([51.5765, 3.7727], 12);
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    
+        // Fetch map data from PHP using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Extract relevant data (lat, lon)
+                    const mapData = JSON.parse(xhr.responseText);
+
+                    // Continue processing (add markers to the map)
+                    mapData.forEach(entry => {
+                        const title = entry.title;
+                        const lat = entry.lat;
+                        const lon = entry.lon;
+
+                        // Create marker with popup and add to the map
+                        const marker = L.marker([lat, lon])
+                            .bindPopup(title)  // Bind the title to the popup
+                            .addTo(map);
+
+                        // Open popup on marker click
+                        marker.on('click', function() {
+                            marker.openPopup();
+                        });
+                    });
+                } else {
+                    console.error('Error fetching map data:', xhr.statusText);
+                }
+            }
+        };
+        // Instantiate the file that handles data
+        xhr.open('GET', 'config/viewComplaints.conf.php?mapdata', true);
+        xhr.send();
+    }    
 });
