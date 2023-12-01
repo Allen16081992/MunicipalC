@@ -115,32 +115,40 @@
                     <button type="submit" name="verwijder" class="delete">Account Sluiten</button>
                 </form>
             </section>
-        ';
-        echo '<section id="admin" class="hidden">
-            <h2>Klachten</h2>
-            <p>Klik op een markering om de klacht van deze locatie te zien.</p>
-            <table border="1">
-                <thead>
-                    <tr>
+
+            <section id="admin" class="hidden">
+                <h2>Klachten</h2>
+                <p>Klik op een markering om de klacht van deze locatie te zien.</p>
+                <table><thead><tr>
         ';
         // Display column names as table headers
         foreach ($complaintsData['columns'] as $column) {
             echo "<th>$column</th>";
         }
-        echo '</tr>
-                </thead>
-                <tbody>
-        ';
+        echo '</tr></thead><tbody><tr>';
         // Display complaint data as table rows
         foreach ($complaintsData['complaints'] as $complaint) {
-            echo '<tr>';
             foreach ($complaint as $data) {
                 echo "<td>$data</td>";
             }
-            echo '</tr>';
         }
-        echo '</tbody>
-            </table>
+        echo '</tr></tbody></table>
+            <div id="kiezen">
+                <form>
+                    <label for="klacht">Snelzoek Functie:</label>
+                    <select id="klacht" name="klacht">
+                        <option value="default" selected>Selecteer een klacht...</option>';
+                    // Display complaint data as table rows
+                    foreach ($complaintsData['complaints'] as $complaint) {
+                        echo "<option value='{$complaint['title']}'>{$complaint['title']}</option>";
+                    }                             
+        echo '      </select>
+                </form>
+            </div>
+            <form>
+                <input type="text" id="zoekbalk" name="zoekbalk" placeholder="Zoek op ID, Naam, Email of Titel...">
+                <button type="submit" id="zoek" name="zoeken">#</button>
+            </form>
             <div id="map"></div>
             </section>
         ';

@@ -50,9 +50,7 @@
         if ($complaintsData) {
             // Here, you can use the data, for example, with the buildManager function
             buildManager($complaintsData);
-        } else {
-            echo "No complaint data found.";
-        }
+        } else { echo "Geen klachten gevonden."; }
       }
     ?>
   </main>

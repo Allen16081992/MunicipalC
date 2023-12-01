@@ -89,8 +89,6 @@ main {
 
 #map {
   height: 400px; /* Set a fixed height or adjust as needed */
-  max-width: 100%; /* Make the map responsive */
-  width: 60%; /* Set a default width */
   margin: 20px auto; /* Center the map horizontally */
   border-radius: 15px;
   border-width: 5px;
@@ -103,13 +101,31 @@ main {
   h1 {
     font-size: 1.50rem; /* Adjust the font size for smaller screens */
   }
-  #map {
-      width: 90%; /* Adjust the width for portrait orientation */
+  table th:nth-child(1),
+  table td:nth-child(1),
+  table th:nth-child(3),
+  table td:nth-child(3),
+  table th:nth-child(5),
+  table td:nth-child(5),
+  table th:nth-child(6),
+  table td:nth-child(6),
+  table th:nth-child(7),
+  table td:nth-child(7) {
+      display: none;
   }
+
+  #map, select {
+    width: 90%; /* Adjust the width for portrait orientation */
+  }
+  #zoekbalk, #zoek { display: none; }
 }
 
 @media (orientation: landscape) {
-  #map {
-      width: 50%; /* Adjust the width for landscape orientation */
+  #map, select  {
+    width: 50%; /* Adjust the width for landscape orientation */
   }
+  #zoekbalk {
+    width:45%;
+  }
+  #zoek { padding-top:10px; width:4.4rem; height:2.5rem;}
 }
