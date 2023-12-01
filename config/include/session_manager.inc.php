@@ -63,7 +63,7 @@
                     <h2>Registreren</h2>
                     <!-- Sign-up form goes here -->
                     <form action="config/signup.conf.php" method="post">
-                        <label for="uid">Gebruiker</label>
+                        <label for="uid">Gebruikersnaam</label>
                         <input type="text" id="uid" name="uid">
                         <label for="email">Email</label>
                         <input type="text" name="email">
@@ -100,12 +100,24 @@
     function buildManager($complaintsData) {
         echo '
             <section id="account">
-                <h2>Account Beheer</h2>
-                <p>Explore and engage with your community.</p>
+                <h2>Account</h2>
+                <p>Wijzig of verwijder je eigen account.</p>
+                <form action="config/#" method="post">
+                    <label for="uid">Gebruikersnaam</label>
+                    <input type="text" id="uid" name="uid">
+                    <label for="email">Email</label>
+                    <input type="text" name="email">
+                    <label for="pwd">Wachtwoord</label>
+                    <input type="password" id="pwd" name="pwd">
+                    <label for="pwdRepeat">Herhaal Wachtwoord</label>
+                    <input type="password" name="pwdRepeat">
+                    <button type="submit" name="opslaan">Opslaan</button>
+                    <button type="submit" name="verwijder" class="delete">Account Sluiten</button>
+                </form>
             </section>
         ';
         echo '<section id="admin" class="hidden">
-            <h2>Klachten Beheer</h2>
+            <h2>Klachten</h2>
             <p>Klik op een markering om de klacht van deze locatie te zien.</p>
             <table border="1">
                 <thead>

@@ -1,3 +1,8 @@
+:root {
+  --white-color: #fff;
+  --error-color: crimson;
+  --error-success: rgb(20, 220, 77);
+}
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,7 +11,7 @@ body {
 
 header {
   background-color: #333;
-  color: #fff;
+  color: var(--white-color);
   padding: 10px;
   text-align: center;
 }
@@ -39,7 +44,7 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  color: #fff;
+  color: var(--white-color);
   transition: opacity 0.3s;
 }
 
@@ -52,16 +57,12 @@ main {
   text-align: center; /* Center the content */
 }
 
-.current {
-  font-style: oblique;
-}
-
 .server-error {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: crimson;
-  border-bottom: 2px solid crimson; 
+  color: var(--error-color);
+  border-bottom: 2px solid var(--error-color); 
   padding: 5px 25px;
   max-width: 100%; margin-bottom: 5px;
 }
@@ -70,14 +71,20 @@ main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: rgb(20, 220, 77);
-  border-bottom: 2px solid rgb(20, 220, 77); 
+  color: var(--error-success);
+  border-bottom: 2px solid var(--error-success); 
   padding: 5px 25px;
   max-width: 100%; margin-bottom: 5px;
 }
 
 .hidden {
   display: none;
+}
+.current {
+  font-style: oblique;
+}
+.delete {
+  background: var(--error-color);
 }
 
 #map {
