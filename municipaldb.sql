@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Tabelstructuur voor tabel `complaints`
 --
 
-CREATE TABLE `complaints` (
+CREATE TABLE `klachten` (
   `ID` int(11) NOT NULL,
   `Naam` varchar(50) NOT NULL,
   `Email` varchar(255) NOT NULL,
@@ -50,7 +50,7 @@ INSERT INTO `klachten` (`ID`, `Naam`, `Email`, `Klacht`, `Beschrijving`, `Breedt
 -- Tabelstructuur voor tabel `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `gebruikers` (
   `ID` int(11) NOT NULL,
   `Gebruikersnaam` varchar(50) NOT NULL,
   `Wachtwoord` varchar(255) NOT NULL,
