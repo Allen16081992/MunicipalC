@@ -7,7 +7,7 @@
 
     protected function getUser($uid, $pwd) {
       
-      $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ? OR email = ?;');
+      $stmt = $this->connect()->prepare('SELECT * FROM gebruikers WHERE Gebruikersnaam = ? OR Email = ?;');
     
       if(!$stmt->execute(array($uid, $uid))) {
         // Handle error, maybe go to homepage
@@ -21,7 +21,7 @@
       $this->BindLoubna($stmt); 
 
       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      $checkPwd = password_verify($pwd, $user[0]["password"]);
+      $checkPwd = password_verify($pwd, $user[0]["Wachtwoord"]);
 
       if($checkPwd == false) {
         // Wrong password, redirect to login page with an error message
@@ -29,8 +29,8 @@
         exit();  
       } elseif($checkPwd == true) {
         // Password is correct, set session variables
-        $_SESSION["user_id"] = $user[0]["userID"];
-        $_SESSION["user_name"] = $user[0]["username"];
+        $_SESSION["gebruiker_id"] = $user[0]["ID"];
+        $_SESSION["gebruiker_naam"] = $user[0]["Gebruikersnaam"];
 
         // Show a message if Login works.
         $_SESSION['success'] = 'U bent ingelogd!';

@@ -17,7 +17,7 @@
             // If $comID is provided, it's an update; otherwise, it's a new complaint
             if ($comID !== null) {
                 // Update the complaint
-                $stmt = $this->connect()->prepare("UPDATE complaints SET name = :name, email = :email, title = :title, `desc` = :desc, lat = :latitude, lon = longitude WHERE comID = :comID;");
+                $stmt = $this->connect()->prepare("UPDATE complaints SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :comID;");
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
@@ -34,7 +34,7 @@
                 $_SESSION['success'] = 'Klacht is bijgewerkt.';
             } else {
                 // Create a new complaint using $data
-                $stmt = $this->connect()->prepare("INSERT INTO complaints (name, email, title, `desc`, lat, lon) VALUES (:name, :email, :title, :desc, :latitude, :longitude);"); 
+                $stmt = $this->connect()->prepare("INSERT INTO complaints (Naam, Email, Klacht, Beschrijving, Breedtegraad, Lengtegraad) VALUES (:name, :email, :title, :desc, :latitude, :longitude);"); 
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
@@ -54,7 +54,7 @@
         protected function deleteComplaint($data) {
             $comID = $data['comID'];
 
-            $stmt = $this->connect()->prepare('DELETE FROM `complaints` WHERE comID = :comID');
+            $stmt = $this->connect()->prepare('DELETE FROM klachten WHERE ID = :comID');
             $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
          
             // If this 'trait' fails, kick back to homepage.
@@ -67,19 +67,19 @@
         protected function searchComplaint($data) {
             // Extract values from $data
             if (isset($data['name'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `name` = :name');
+                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Naam = :name');
                 $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
 
             } elseif(isset($data['email'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE email = :email');
+                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Email = :email');
                 $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
 
             } elseif(isset($data['title'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE title = :title');
+                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Klacht = :title');
                 $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
 
             } elseif(isset($data['comID'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM `complaints` WHERE `comID` = :comID');
+                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comID');
                 $stmt->bindParam(":comID", $data['comID'], PDO::PARAM_INT);
             }
 

@@ -4,17 +4,17 @@
     class DbFetcher extends Database {
         public function fetchComplaints() {
             try {
-                $stmtColumns = $this->connect()->prepare("SHOW COLUMNS FROM complaints");
+                $stmtColumns = $this->connect()->prepare("SHOW COLUMNS FROM klachten");
                 $stmtColumns->execute();
                 $columns = $stmtColumns->fetchAll(PDO::FETCH_COLUMN);
     
-                $stmtComplaints = $this->connect()->prepare('SELECT * FROM complaints');
+                $stmtComplaints = $this->connect()->prepare('SELECT * FROM klachten');
                 $stmtComplaints->execute();
                 $complaintsList = $stmtComplaints->fetchAll(PDO::FETCH_ASSOC);
     
                 $complaintsData = [
                     'columns' => $columns,
-                    'complaints' => $complaintsList
+                    'klachten' => $complaintsList
                 ];
     
                 return $complaintsData;
@@ -28,7 +28,7 @@
 
         public function fetchComplaintsJSON() {
             try {
-                $stmtComplaints = $this->connect()->prepare('SELECT title, lat, lon FROM complaints');
+                $stmtComplaints = $this->connect()->prepare('SELECT Klacht, Breedtegraad, Lengtegraad FROM klachten');
                 $stmtComplaints->execute();
                 $mapData = $stmtComplaints->fetchAll(PDO::FETCH_ASSOC);
     
@@ -42,10 +42,32 @@
                 throw new Exception("Failed to fetch map data.");
             }
         }
+
+        public function fetchComplaintID($comkey) {
+            try {
+                $stmt = $this->connect()->prepare('SELECT Naam, Email, Klacht, Beschrijving FROM klachten WHERE ID = :comkey');
+                $stmt->bindParam(":comkey", $comkey, PDO::PARAM_STR);
+                $stmt->execute();
+                $klachtID = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                // Return results
+                header('Content-Type: application/json');
+                echo json_encode($klachtID);
+
+            } catch (PDOException $e) {
+                // Log the exception details
+                error_log("Failed to fetch map data: " . $e->getMessage(), 0);
+                // Throw a user-friendly message
+                throw new Exception("Failed to fetch map data.");
+            }
+        }
     }
 
     $dbFetcher = new DbFetcher();
-    if (isset($_GET['mapdata'])) {
+    if (isset($_POST['zoekbalk'])) {
+        $comkey = $_POST['zoekbalk'];
+        $dbFetcher->fetchComplaintID($comkey);
+    } elseif (isset($_GET['mapdata'])) {
         // Check if the 'mapdata' query parameter is present in the URL
         $dbFetcher->fetchComplaintsJSON();
     } else {

@@ -2,37 +2,37 @@
     trait InputCheck {
 
         private function emptyUid() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->uid));
         }
 
         private function emptyNames() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->name));
         }
 
         private function emptyEmail() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->email));
         }
 
         private function emptyTitle() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->title));
         }
 
         private function emptyGPS() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->gps));
         }
 
         private function invalidEmail() {
-            // Make sure the submitted values contain an @ character.
+            // Controleer of meegegeven informatie een @ bevat.
             return filter_var($this->email, FILTER_VALIDATE_EMAIL);
         }
         
         private function invalidInput() {
-            // Make sure the submitted values contain permitted characters.
+            // Controleer of de invoer toegestaan is.
             return !(
                 preg_match("/^[a-zA-Z]*$/", $this->name) &&
                 preg_match("/^[a-zA-Z]*$/", $this->surname) &&
@@ -41,25 +41,27 @@
         }
 
         private function emptyPassw() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->pwd));
         }
 
         private function emptyPasswords() {
-            // Make sure the submitted values are not empty.
+            // Controleer of niets is opgegeven.
             return !(empty($this->pwd) || empty($this->pwdRepeat));
         }
 
         private function passwMatcher() {
-            // Make sure the submitted values are equal.
+            // Controleer of wachtwoorden gelijk zijn.
             return $this->pwd === $this->pwdRepeat;
         }
 
         private function uidTakenCheck() {
+            // Controleer of de gebruiker al bestaat.
             return $this->checkUser($this->uid, $this->email);
         }
 
         private function BindExecutor($stmt) {
+            // Geef een foutmelding als de handeling mislukt.
             if(!$stmt->execute()) {
                 $stmt = null;
                 $_SESSION['error'] = 'Database query failed.';
@@ -70,7 +72,6 @@
 
         // Niks te zien hier
         private function BindLoubna($stmt) {
-
             // Als het aantal rijen uit Tabel niets oplevert, ga naar homepage
             if($stmt->rowCount() == 0) {
                 $stmt = null;

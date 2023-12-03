@@ -28,20 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `complaints` (
-  `comID` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `desc` text NOT NULL,
-  `lat` double NOT NULL,
-  `lon` double NOT NULL
+  `ID` int(11) NOT NULL,
+  `Naam` varchar(50) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Klacht` varchar(50) NOT NULL,
+  `Beschrijving` text NOT NULL,
+  `Breedtegraad` double NOT NULL,
+  `Lengtegraad` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `complaints`
 --
 
-INSERT INTO `complaints` (`comID`, `name`, `email`, `title`, `desc`, `lat`, `lon`) VALUES
+INSERT INTO `klachten` (`ID`, `Naam`, `Email`, `Klacht`, `Beschrijving`, `Breedtegraad`, `Lengtegraad`) VALUES
 (1, 'asdf', 'abc@gmail.com', 'asdfg', 'asdfghsfdgh', 51.58532322347901, 3.775747312019298);
 
 -- --------------------------------------------------------
@@ -51,18 +51,18 @@ INSERT INTO `complaints` (`comID`, `name`, `email`, `title`, `desc`, `lat`, `lon
 --
 
 CREATE TABLE `users` (
-  `userID` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `salt` varchar(255) NOT NULL
+  `ID` int(11) NOT NULL,
+  `Gebruikersnaam` varchar(50) NOT NULL,
+  `Wachtwoord` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Salt` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `password`, `email`, `salt`) VALUES
+INSERT INTO `gebruikers` (`ID`, `Gebruikersnaam`, `Wachtwoord`, `Email`, `Salt`) VALUES
 (1, 'Stan', '$2y$10$.gszBG0kRMGaMLze4RhO2./pFsRcnVr4RXYzZOl9Ciw.XQ/G2q7LK', 'stan@gmail.com', '');
 
 --
@@ -72,14 +72,14 @@ INSERT INTO `users` (`userID`, `username`, `password`, `email`, `salt`) VALUES
 --
 -- Indexen voor tabel `complaints`
 --
-ALTER TABLE `complaints`
-  ADD PRIMARY KEY (`comID`);
+ALTER TABLE `klachten`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexen voor tabel `users`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`);
+ALTER TABLE `gebruikers`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -88,14 +88,14 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT voor een tabel `complaints`
 --
-ALTER TABLE `complaints`
-  MODIFY `comID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `klachten`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
-ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `gebruikers`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

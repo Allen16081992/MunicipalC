@@ -17,7 +17,7 @@
 
     // Webpage Content Generator Functions
     function buildHeader() {
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['gebruiker_id'])) {
             //$_SESSION['error'] = '401: Ongeautoriseerd Toegang. Log eerst in.';
             echo '
                 <ul>
@@ -30,7 +30,7 @@
         } else {
             echo '
                 <ul>
-                    <li class="current">'.$_SESSION['user_name'].'</li>
+                    <li class="current">'.$_SESSION['gebruiker_naam'].'</li>
                     <li><a href="#" data-section="account">Account</a></li>
                     <li><a href="#" data-section="admin">Klachten</a></li>
                     <li><a href="#" data-section="logout">Logout</a></li>
@@ -40,7 +40,7 @@
     }
 
     function buildSections() {
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
                     <h2>Welcome to Gemeente Havenburg</h2>
@@ -52,9 +52,9 @@
                     <!-- Login form goes here -->
                     <form action="config/login.conf.php" method="post">
                         <label for="uid">Gebruiker</label>
-                        <input type="text" id="uid" name="uid">
+                        <input type="text" name="uid">
                         <label for="pwd">Wachtwoord</label>
-                        <input type="password" id="pwd" name="pwd">
+                        <input type="password" name="pwd">
                         <button type="submit" name="submit">Inloggen</button>
                     </form> 
                 </section>
@@ -64,11 +64,11 @@
                     <!-- Sign-up form goes here -->
                     <form action="config/signup.conf.php" method="post">
                         <label for="uid">Gebruikersnaam</label>
-                        <input type="text" id="uid" name="uid">
+                        <input type="text" name="uid">
                         <label for="email">Email</label>
                         <input type="text" name="email">
                         <label for="pwd">Wachtwoord</label>
-                        <input type="password" id="pwd" name="pwd">
+                        <input type="password" name="pwd">
                         <label for="pwdRepeat">Herhaal Wachtwoord</label>
                         <input type="password" name="pwdRepeat">
                         <button type="submit" name="submit">Registreren</button>
@@ -80,15 +80,15 @@
                     <!-- Complaints form goes here -->
                     <form action="config/complaint.conf.php" method="post">
                         <label for="name">Volledige Naam</label>
-                        <input type="text" id="name" name="name">
+                        <input type="text" name="name">
                         <label for="email">Email</label>
-                        <input type="text" id="email" name="email">
+                        <input type="text" name="email">
                         <label for="title">Klacht</label>
-                        <input type="text" id="title" name="title">
+                        <input type="text" name="title">
                         <label for="desc">Beschrijving</label>
-                        <textarea id="desc" name="desc" rows="4" cols="50"></textarea>
+                        <textarea name="desc" rows="4" cols="50"></textarea>
                         <label for="location">Locatie</label>
-                        <input type="text" id="location" name="location">
+                        <input type="text" name="location">
                         <div id="map"></div>
                         <button type="submit" name="creCom">Verzenden</button>
                     </form> 
@@ -100,15 +100,15 @@
     function buildManager($complaintsData) {
         echo '
             <section id="account">
-                <h2>Account</h2>
+                <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
                 <form action="config/#" method="post">
                     <label for="uid">Gebruikersnaam</label>
-                    <input type="text" id="uid" name="uid">
+                    <input type="text" name="uid">
                     <label for="email">Email</label>
                     <input type="text" name="email">
                     <label for="pwd">Wachtwoord</label>
-                    <input type="password" id="pwd" name="pwd">
+                    <input type="password" name="pwd">
                     <label for="pwdRepeat">Herhaal Wachtwoord</label>
                     <input type="password" name="pwdRepeat">
                     <button type="submit" name="opslaan">Opslaan</button>
@@ -117,7 +117,7 @@
             </section>
 
             <section id="admin" class="hidden">
-                <h2>Klachten</h2>
+                <h2>Klachten Paneel</h2>
                 <p>Klik op een markering om de klacht van deze locatie te zien.</p>
                 <table><thead><tr>
         ';
@@ -127,29 +127,34 @@
         }
         echo '</tr></thead><tbody><tr>';
         // Display complaint data as table rows
-        foreach ($complaintsData['complaints'] as $complaint) {
+        foreach ($complaintsData['klachten'] as $complaint) {
             foreach ($complaint as $data) {
                 echo "<td>$data</td>";
             }
         }
         echo '</tr></tbody></table>
             <div id="kiezen">
-                <form>
-                    <label for="klacht">Snelzoek Functie:</label>
-                    <select id="klacht" name="klacht">
+                <form action="config/viewComplaints.conf.php" method="post">
+                    <label for="zoekbalk">Snelzoek Functie:</label>
+                    <select name="zoekbalk" onchange="submitForm(this.form)">
                         <option value="default" selected>Selecteer een klacht...</option>';
                     // Display complaint data as table rows
-                    foreach ($complaintsData['complaints'] as $complaint) {
-                        echo "<option value='{$complaint['title']}'>{$complaint['title']}</option>";
+                    foreach ($complaintsData['klachten'] as $complaint) {
+                        echo "<option value='{$complaint['Klacht']}'>{$complaint['Klacht']}</option>";
                     }                             
         echo '      </select>
                 </form>
             </div>
             <form>
-                <input type="text" id="zoekbalk" name="zoekbalk" placeholder="Zoek op ID, Naam, Email of Titel...">
+                <input type="text" id="zoekbalk" name="zoekbalk" placeholder="Voer een ID in...">
                 <button type="submit" id="zoek" name="zoeken">#</button>
             </form>
             <div id="map"></div>
-            </section>
-        ';
+            <div class="complaint-card hidden">
+                <h3></h3>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </section>';
     }

@@ -5,7 +5,7 @@ class Signup extends Database {
     protected function setUser($uid, $pwd, $email) {
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-        $stmt = $this->connect()->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?);');
+        $stmt = $this->connect()->prepare('INSERT INTO gebruikers (Gebruikersnaam, Wachtwoord, Email) VALUES (?, ?, ?);');
  
         if(!$stmt->execute(array($uid, $hashedPwd, $email))) {
             $stmt = null;
@@ -21,7 +21,7 @@ class Signup extends Database {
 
     // Check if user already exists in the database
     protected function checkUser($uid, $email) {
-        $stmt = $this->connect()->prepare('SELECT userID FROM users WHERE username = ? OR email = ?;');
+        $stmt = $this->connect()->prepare('SELECT ID FROM gebruikers WHERE Gebruikersnaam = ? OR Email = ?;');
         // If this fails, kick back to homepage.
         if(!$stmt->execute(array($uid, $email))) {
             $stmt = null;

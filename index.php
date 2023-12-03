@@ -24,6 +24,7 @@
   <!-- Include Leaflet from CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script defer src="config/js/snelzoekfunctie.js"></script>
 </head>
 
 <body>
@@ -41,10 +42,10 @@
   <main id="content-container">
     <?php 
       include_once 'config/include/server_messages.inc.php';
-      if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
+      if (!isset($_SESSION['gebruiker_id']) && !isset($_SESSION['gebruiker_naam'])) {
         buildSections(); 
       }
-      if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+      if (isset($_SESSION['gebruiker_id']) && isset($_SESSION['gebruiker_naam'])) {
         require_once 'config/viewComplaints.conf.php';
 
         if ($complaintsData) {

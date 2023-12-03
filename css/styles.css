@@ -96,6 +96,13 @@ main {
   border-color: silver;
 }
 
+.complaint-card {
+  border-radius: 8px;
+  padding:10px;
+  height: 400px; 
+  margin: 20px auto;
+}
+
 /* Responsive styling */
 @media (orientation: portrait) {
   h1 {
@@ -114,14 +121,14 @@ main {
       display: none;
   }
 
-  #map, select {
+  #map, select, .complaint-card {
     width: 90%; /* Adjust the width for portrait orientation */
   }
   #zoekbalk, #zoek { display: none; }
 }
 
 @media (orientation: landscape) {
-  #map, select  {
+  #map, select, .complaint-card  {
     width: 50%; /* Adjust the width for landscape orientation */
   }
   #zoekbalk {
