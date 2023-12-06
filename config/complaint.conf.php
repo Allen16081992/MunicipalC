@@ -44,8 +44,7 @@
         ];
         $complaint->searchComplaint($data);
 
-    } // View All
-    //$complaint->viewComplaints();  
+    }
 
     header("location: ../index.php");
     exit();

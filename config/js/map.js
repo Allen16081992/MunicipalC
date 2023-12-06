@@ -79,13 +79,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Continue processing (add markers to the map)
                     mapData.forEach(entry => {
-                        const title = entry.title;
-                        const lat = entry.lat;
-                        const lon = entry.lon;
+                        const klacht = entry.Klacht;
+                        const lat = entry.Breedtegraad;
+                        const lon = entry.Lengtegraad;
 
                         // Create marker with popup and add to the map
                         const marker = L.marker([lat, lon])
-                            .bindPopup(title)  // Bind the title to the popup
+                            .bindPopup(klacht)  // Bind the title to the popup
                             .addTo(map);
 
                         // Open popup on marker click

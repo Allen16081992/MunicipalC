@@ -88,7 +88,7 @@
                         <label for="desc">Beschrijving</label>
                         <textarea name="desc" rows="4" cols="50"></textarea>
                         <label for="location">Locatie</label>
-                        <input type="text" name="location">
+                        <input type="text" name="location" id="location">
                         <div id="map"></div>
                         <button type="submit" name="creCom">Verzenden</button>
                     </form> 
@@ -125,22 +125,26 @@
         foreach ($complaintsData['columns'] as $column) {
             echo "<th>$column</th>";
         }
-        echo '</tr></thead><tbody><tr>';
+        echo '</tr></thead><tbody>';
         // Display complaint data as table rows
         foreach ($complaintsData['klachten'] as $complaint) {
+            echo '<tr>';
             foreach ($complaint as $data) {
                 echo "<td>$data</td>";
             }
+            echo '</tr>';
         }
+        echo '</tbody></table>';
+
         echo '</tr></tbody></table>
             <div id="kiezen">
-                <form action="config/viewComplaints.conf.php" method="post">
+                <form id="quickSearch">
                     <label for="zoekbalk">Snelzoek Functie:</label>
-                    <select name="zoekbalk" onchange="submitForm(this.form)">
+                    <select name="zoekbalk" id="zoekbalk" onchange="submitForm()">
                         <option value="default" selected>Selecteer een klacht...</option>';
                     // Display complaint data as table rows
                     foreach ($complaintsData['klachten'] as $complaint) {
-                        echo "<option value='{$complaint['Klacht']}'>{$complaint['Klacht']}</option>";
+                        echo "<option value='{$complaint['ID']}'>{$complaint['Klacht']}</option>";
                     }                             
         echo '      </select>
                 </form>
@@ -150,10 +154,10 @@
                 <button type="submit" id="zoek" name="zoeken">#</button>
             </form>
             <div id="map"></div>
-            <div class="complaint-card hidden">
+            <div id="displayArea" class="complaint-card hidden">
                 <h3></h3>
-                <p></p>
-                <p></p>
+                <span></span>
+                <span></span>
                 <p></p>
             </div>
         </section>';

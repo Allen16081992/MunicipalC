@@ -17,7 +17,7 @@
             $this->title = $data['title'];
             $this->desc = $data['desc'];
             $this->gps = $data['location'];
-            $this->comID = $data['comID'];
+            $this->comID = isset($data['comID']) ? $data['comID'] : null;
 
             if(!$this->emptyNames()) {
                 // Geen naam opgegeven.
@@ -38,7 +38,7 @@
                 // Ongeldige invoer.
                 $_SESSION['error'] = 'Alleen letters en cijfers worden geaccepteerd.';
             } else {
-                $this->setComplaint($this->name, $this->email, $this->title, $this->desc, $this->gps, $this->comID = null);
+                $this->setComplaint($this->name, $this->email, $this->title, $this->desc, $this->gps, $this->comID);
             }
         }
     }

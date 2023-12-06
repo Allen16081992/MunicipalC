@@ -17,14 +17,14 @@
             // If $comID is provided, it's an update; otherwise, it's a new complaint
             if ($comID !== null) {
                 // Update the complaint
-                $stmt = $this->connect()->prepare("UPDATE complaints SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :comID;");
+                $stmt = $this->connect()->prepare("UPDATE klachten SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :comID;");
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
                 $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
-                // Watch out, these are numerical values!
-                $stmt->bindParam(":lat", $latitude, PDO::PARAM_INT);
-                $stmt->bindParam(":lon", $longitude, PDO::PARAM_INT);
+                $stmt->bindParam(":latitude", $latitude, PDO::PARAM_STR);
+                $stmt->bindParam(":longitude", $longitude, PDO::PARAM_STR);
+                // Watch out, this is a numerical value!
                 $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
@@ -34,14 +34,13 @@
                 $_SESSION['success'] = 'Klacht is bijgewerkt.';
             } else {
                 // Create a new complaint using $data
-                $stmt = $this->connect()->prepare("INSERT INTO complaints (Naam, Email, Klacht, Beschrijving, Breedtegraad, Lengtegraad) VALUES (:name, :email, :title, :desc, :latitude, :longitude);"); 
+                $stmt = $this->connect()->prepare("INSERT INTO klachten (Naam, Email, Klacht, Beschrijving, Breedtegraad, Lengtegraad) VALUES (:name, :email, :title, :desc, :latitude, :longitude);"); 
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
                 $stmt->bindParam(":desc", $desc, PDO::PARAM_STR);
-                // Watch out, these are numerical values!
-                $stmt->bindParam(":lat", $latitude, PDO::PARAM_INT);
-                $stmt->bindParam(":lon", $longitude, PDO::PARAM_INT);
+                $stmt->bindParam(":latitude", $latitude, PDO::PARAM_STR);
+                $stmt->bindParam(":longitude", $longitude, PDO::PARAM_STR);
 
                 // If this 'trait' fails, kick back to homepage.
                 $this->BindExecutor($stmt);

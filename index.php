@@ -1,15 +1,9 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data, content and error messages.
   require_once 'config/include/session_manager.inc.php'; 
-  
   // Call the periodic session rebuilder (to tackle session hijacking)
-  sessionRebuild(); 
-
-  // Load PHP files to retrieve data
-    //require_once "config/ViewResumes.config.php";
-    //require_once "config/FetchResumeTables.config.php";
+  sessionRebuild();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +17,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <!-- Include Leaflet from CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script defer src="config/js/snelzoekfunctie.js"></script>
 </head>
 

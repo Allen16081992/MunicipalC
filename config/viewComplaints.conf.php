@@ -48,19 +48,25 @@
                 $stmt = $this->connect()->prepare('SELECT Naam, Email, Klacht, Beschrijving FROM klachten WHERE ID = :comkey');
                 $stmt->bindParam(":comkey", $comkey, PDO::PARAM_STR);
                 $stmt->execute();
-                $klachtID = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // Return results
-                header('Content-Type: application/json');
-                echo json_encode($klachtID);
-
+                $fetchedData = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+                // Check if json_encode fails
+                if ($fetchedData === false) {
+                    error_log("json_encode failed. Last error: " . json_last_error_msg());
+                    // Output a message indicating failure
+                    echo json_encode(["error" => "Failed to encode data"]);
+                } else {
+                    // Output the JSON-encoded data
+                    echo json_encode($fetchedData);
+                }
+        
             } catch (PDOException $e) {
                 // Log the exception details
                 error_log("Failed to fetch map data: " . $e->getMessage(), 0);
                 // Throw a user-friendly message
                 throw new Exception("Failed to fetch map data.");
             }
-        }
+        }              
     }
 
     $dbFetcher = new DbFetcher();
