@@ -1,3 +1,4 @@
+"use strict"; // Dhr. Allen Pieter
 document.addEventListener('DOMContentLoaded', function () {
     // Get all navigation buttons
     var navButtons = document.querySelectorAll('nav ul li a');

@@ -1,8 +1,8 @@
+"use strict"; // Dhr. Allen Pieter
 document.addEventListener('DOMContentLoaded', function () {
+    // Declare stuff
     var navButtons = document.querySelectorAll('nav ul li a');
     var sections = document.querySelectorAll('section');
-
-    // Declare map as a global variable
     var map;
 
     function showSection(sectionId) {
