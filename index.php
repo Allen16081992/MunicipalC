@@ -38,8 +38,7 @@
       include_once 'config/include/server_messages.inc.php';
       if (!isset($_SESSION['gebruiker_id']) && !isset($_SESSION['gebruiker_naam'])) {
         buildSections(); 
-      }
-      if (isset($_SESSION['gebruiker_id']) && isset($_SESSION['gebruiker_naam'])) {
+      } else {
         require_once 'config/viewComplaints.conf.php';
 
         if ($complaintsData) {

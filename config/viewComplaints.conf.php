@@ -46,7 +46,7 @@
         public function fetchComplaintID($comkey) {
             try {
                 $stmt = $this->connect()->prepare('SELECT Naam, Email, Klacht, Beschrijving FROM klachten WHERE ID = :comkey');
-                $stmt->bindParam(":comkey", $comkey, PDO::PARAM_STR);
+                $stmt->bindParam(":comkey", $comkey, PDO::PARAM_INT);
                 $stmt->execute();
                 $fetchedData = $stmt->fetch(PDO::FETCH_ASSOC);
         
@@ -72,7 +72,7 @@
     $dbFetcher = new DbFetcher();
     if (isset($_POST['zoekbalk'])) {
         $comkey = $_POST['zoekbalk'];
-        $dbFetcher->fetchComplaintID($comkey);
+        $complaintID = $dbFetcher->fetchComplaintID($comkey);
     } elseif (isset($_GET['mapdata'])) {
         // Check if the 'mapdata' query parameter is present in the URL
         $dbFetcher->fetchComplaintsJSON();

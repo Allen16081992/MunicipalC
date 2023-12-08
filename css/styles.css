@@ -99,8 +99,15 @@ main {
 .complaint-card {
   border-radius: 8px;
   padding:10px;
-  height: 400px; 
+  min-height: 12rem; 
   margin: 20px auto;
+  border: 2px solid black;
+}
+.complaint-card h3,
+.complaint-card span,
+.complaint-card p {
+  display: block;
+  margin-bottom: 8px;  /* Add margin to separate each element */
 }
 
 /* Responsive styling */
@@ -131,8 +138,4 @@ main {
   #map, select, .complaint-card  {
     width: 50%; /* Adjust the width for landscape orientation */
   }
-  #zoekbalk {
-    width:45%;
-  }
-  #zoek { padding-top:10px; width:4.4rem; height:2.5rem;}
 }

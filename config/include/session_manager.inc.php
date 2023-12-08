@@ -128,31 +128,33 @@
         echo '</tr></thead><tbody>';
         // Display complaint data as table rows
         foreach ($complaintsData['klachten'] as $complaint) {
-            echo '<tr>';
-            foreach ($complaint as $data) {
-                echo "<td>$data</td>";
+            $counter = 0; // Initialize counter
+            if ($counter < 6) { // Limit to the first 6 results
+                echo '<tr>';
+                foreach ($complaint as $data) {
+                    echo "<td>$data</td>";
+                }
+                echo '</tr>';
+                $counter++;
+            } else {
+                break; // Break out of the loop once 6 iterations are done
             }
-            echo '</tr>';
         }
         echo '</tbody></table>';
 
         echo '</tr></tbody></table>
             <div id="kiezen">
-                <form id="quickSearch">
+                <form id="quickSearch" method="post">
                     <label for="zoekbalk">Snelzoek Functie:</label>
                     <select name="zoekbalk" id="zoekbalk" onchange="submitForm()">
                         <option value="default" selected>Selecteer een klacht...</option>';
                     // Display complaint data as table rows
                     foreach ($complaintsData['klachten'] as $complaint) {
-                        echo "<option value='{$complaint['ID']}'>{$complaint['Klacht']}</option>";
+                        echo "<option name='zoekbalk' value='{$complaint['ID']}'>{$complaint['Klacht']}</option>";
                     }                             
         echo '      </select>
                 </form>
             </div>
-            <form>
-                <input type="text" id="zoekbalk" name="zoekbalk" placeholder="Voer een ID in...">
-                <button type="submit" id="zoek" name="zoeken">#</button>
-            </form>
             <div id="map"></div>
             <div id="displayArea" class="complaint-card hidden">
                 <h3></h3>
