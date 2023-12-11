@@ -20,7 +20,7 @@ class LoginContr extends Login {
             header("location: ../index.php?error=emptyname");
             exit();
         }
-        if(!$this->emptyPassw()) {
+        if(!$this->emptyPasswords()) {
             $_SESSION['error'] = 'Voer uw Wachtwoord in.';
             header("location: ../index.php?error=emptypassword");
             exit();

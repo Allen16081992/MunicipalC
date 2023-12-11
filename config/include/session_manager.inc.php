@@ -102,7 +102,7 @@
             <section id="account">
                 <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
-                <form action="config/#" method="post">
+                <form action="config/classes/update.class.php" method="post">
                     <label for="uid">Gebruikersnaam</label>
                     <input type="text" name="uid">
                     <label for="email">Email</label>

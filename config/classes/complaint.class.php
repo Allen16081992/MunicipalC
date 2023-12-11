@@ -3,7 +3,6 @@
     require_once '././controller/errorchecks.contr.php';
 
     class Complaint extends Database {
-        // Consolidate properties
         use InputCheck;
 
         protected function setComplaint($name, $email, $title, $desc, $gps, $comID) {

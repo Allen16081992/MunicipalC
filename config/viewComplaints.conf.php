@@ -26,7 +26,7 @@
             }
         }
 
-        public function fetchComplaintsJSON() {
+        public function fetchMarkerJSON() {
             try {
                 $stmtComplaints = $this->connect()->prepare('SELECT Klacht, Breedtegraad, Lengtegraad FROM klachten');
                 $stmtComplaints->execute();
@@ -75,7 +75,7 @@
         $complaintID = $dbFetcher->fetchComplaintID($comkey);
     } elseif (isset($_GET['mapdata'])) {
         // Check if the 'mapdata' query parameter is present in the URL
-        $dbFetcher->fetchComplaintsJSON();
+        $dbFetcher->fetchMarkerJSON();
     } else {
         // Otherwise, fetch complaints data
         $complaintsData = $dbFetcher->fetchComplaints();

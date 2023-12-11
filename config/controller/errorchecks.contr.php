@@ -26,6 +26,15 @@
             return !(empty($this->gps));
         }
 
+        private function emptyPasswords() {
+            // Controleer of niets is opgegeven.
+            if (isset($this->pwd, $this->pwdRepeat)) {
+                return !(empty($this->pwd) || empty($this->pwdRepeat));
+            } else {
+                return !(empty($this->pwd));
+            }
+        }
+
         private function invalidEmail() {
             // Controleer of meegegeven informatie een @ bevat.
             return filter_var($this->email, FILTER_VALIDATE_EMAIL);
@@ -35,19 +44,8 @@
             // Controleer of de invoer toegestaan is.
             return !(
                 preg_match("/^[a-zA-Z]*$/", $this->name) &&
-                preg_match("/^[a-zA-Z]*$/", $this->surname) &&
                 preg_match("/^[0-9.,]*$/", $this->gps)
             );
-        }
-
-        private function emptyPassw() {
-            // Controleer of niets is opgegeven.
-            return !(empty($this->pwd));
-        }
-
-        private function emptyPasswords() {
-            // Controleer of niets is opgegeven.
-            return !(empty($this->pwd) || empty($this->pwdRepeat));
         }
 
         private function passwMatcher() {
@@ -70,9 +68,8 @@
             }
         }
 
-        // Niks te zien hier
         private function BindLoubna($stmt) {
-            // Als het aantal rijen uit Tabel niets oplevert, ga naar homepage
+            // Als het aantal rijen uit tabel niks geeft, ga naar homepage
             if($stmt->rowCount() == 0) {
                 $stmt = null;
                 $_SESSION['error'] = 'Niets gevonden.';
