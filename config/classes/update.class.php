@@ -26,6 +26,14 @@
             echo "wachtwoord is bijgewerkt\n";
         }
 
+        // Functie om een gebruiker te verwijderen
+        public function deleteUser() {
+            $query = $this->db->prepare("DELETE FROM users WHERE id = :id");
+            $query->bindParam(':id', $this->id);
+            $query->execute();
+            echo "Gebruiker met ID " . $this->id . "is verwijderd.\n";
+        }
+
         // Functie om alle gebruikersgegevens weer te geven
         public function displayUserInfo() {
             echo "Gebruikersinformatie:\n";
@@ -39,6 +47,13 @@
     // Voorbeeldgebruik:
     $user = new User(1, 'voorbeeldgebruiker', 'voorbeeld@email.com', 'wachtwoord123');
     $user->displayUserInfo();
+
+    // Update van gebruikersgegevens
+    $user->updateEmail('nieuw@email.com');
+    $user->updatePassword('nieuw_wachtwoord');
+
+    // Gebruiker verwijderen
+    $user->deleteUser();
     
     if(isset($_POST["submit"])) {
 
