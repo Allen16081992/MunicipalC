@@ -2,44 +2,46 @@
         require_once 'secure-db.class.php';    
         
     class User extends Database {
-        private $uid;
-        private $password;
-        private $email;
+        private $ID;
+        private $Naam;
+        private $Wachtwoord;
+        private $Email;
 
-        public function __construct($uid, $password, $email) {
-            $this->uid = $uid;
-            $this->password = $password;
-            $this->email = $email;
+        public function __construct($ID, $Naam, $Wachtwoord, $Email) {
+            $this->ID = $ID;
+            $this->Naam = $Naam;
+            $this->Wachtwoord = $Wachtwoord;
+            $this->Email = $Email;
         }
 
         // functie om de email bij te werken
         public function updateEmail($newEmail) {
-            $this->email = $newEmail;
-            echo "E-mailadress bijgewerkt naar:" . $this->email . "\n";
+            $this->Email = $newEmail;
+            echo "E-mailadress bijgewerkt naar:" . $this->Email . "\n";
         }
 
         // functie om het wachtwoord bij te werken
-        public function updatePassword($newPassword) {
+        public function updateWachtwoord($newWachtwoord) {
             // Hier zou normaal gesproken logica zijn om het wachtwoord in de database bij te werken
             // Voor dit voorbeeld wordt de waarde gewoon bijgewerkt
-            $this->password = $newPassword;
+            $this->Wachtwoord = $newWachtwoord;
             echo "wachtwoord is bijgewerkt\n";
         }
 
         // Functie om een gebruiker te verwijderen
         public function deleteUser() {
-            $query = $this->db->prepare("DELETE FROM users WHERE id = :id");
-            $query->bindParam(':id', $this->id);
-            $query->execute();
-            echo "Gebruiker met ID " . $this->id . "is verwijderd.\n";
+        $query = $this->connect()->prepare("DELETE FROM gebruikers WHERE ID = :ID");
+        $query->bindParam(':ID', $this->ID);
+        $query->execute();
+        echo "Gebruiker met ID " . $this->ID . " is verwijderd.\n";
         }
 
         // Functie om alle gebruikersgegevens weer te geven
         public function displayUserInfo() {
             echo "Gebruikersinformatie:\n";
-            echo "gebruikers-ID: " . $this->id . "\n";
-            echo "gebruikersnaam: " . $this->username . "\n";
-            echo "E-mailadres: " . $this->email . "\n";
+            echo "gebruikers-ID: " . $this->ID . "\n";
+            echo "gebruikersnaam: " . $this->Gebruikersnaam . "\n";
+            echo "E-mailadres: " . $this->Email . "\n";
             // Let op: Wachtwoord wordt niet weergegeven om beveiligingsredenen
         }
     }
@@ -50,16 +52,16 @@
 
     // Update van gebruikersgegevens
     $user->updateEmail('nieuw@email.com');
-    $user->updatePassword('nieuw_wachtwoord');
+    $user->updateWachtwoord('nieuw_wachtwoord');
 
     // Gebruiker verwijderen
     $user->deleteUser();
     
     if(isset($_POST["submit"])) {
 
-            $uid = $_POST["uid"];
-            $email = $_POST["email"];
-            $password = $_POST["pwd"];
+            $Naam = $_POST["uid"];
+            $Email = $_POST["email"];
+            $Wachtwoord = $_POST["pwd"];
             $pwdRepeat = $_POST["pwdRepeat"];
         }
 ?>
