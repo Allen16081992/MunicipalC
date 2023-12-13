@@ -43,7 +43,7 @@
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
-                    <h2>Welcome to Gemeente Havenburg</h2>
+                    <h2>Welkom bij Gemeente Havenburg</h2>
                     <p>Explore and engage with your community.</p>
                 </section>
             
@@ -103,6 +103,7 @@
                 <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
                 <form action="config/classes/update.class.php" method="post">
+                    <input type="hidden" name="ID" value="ID">
                     <label for="uid">Gebruikersnaam</label>
                     <input type="text" name="uid">
                     <label for="email">Email</label>
