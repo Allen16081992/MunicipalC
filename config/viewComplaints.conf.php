@@ -30,7 +30,7 @@
             try {
                 $stmtComplaints = $this->connect()->prepare('SELECT Klacht, Breedtegraad, Lengtegraad FROM klachten');
                 $stmtComplaints->execute();
-                $mapData = $stmtComplaints->fetchAll(PDO::FETCH_ASSOC);
+                $mapData = $stmtComplaints->fetchAll();
     
                 // Return JSON-encoded data
                 header('Content-Type: application/json');
@@ -45,7 +45,7 @@
 
         public function fetchComplaintID($comkey) {
             try {
-                $stmt = $this->connect()->prepare('SELECT Naam, Email, Klacht, Beschrijving FROM klachten WHERE ID = :comkey');
+                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comkey');
                 $stmt->bindParam(":comkey", $comkey, PDO::PARAM_INT);
                 $stmt->execute();
                 $fetchedData = $stmt->fetch(PDO::FETCH_ASSOC);

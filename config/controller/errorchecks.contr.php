@@ -1,6 +1,11 @@
 <?php // Dhr. Allen Pieter
     trait InputCheck {
 
+        private function emptyCID() {
+            // Controleer of niets is opgegeven.
+            return !(empty($this->comID));
+        }
+
         private function emptyUid() {
             // Controleer of niets is opgegeven.
             return !(empty($this->uid));

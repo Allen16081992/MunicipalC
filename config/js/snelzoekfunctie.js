@@ -20,10 +20,18 @@ function submitForm() {
         } else {
             // Finally show that utterly dispicable data...
             document.getElementById("displayArea").innerHTML = `
-                <h3>${data.Klacht}</h3>
-                <span>Melder: ${data.Naam}</span>
-                <span>${data.Email}</span>
-                <p>${data.Beschrijving}</p>
+                <form action="config/complaint.conf.php" method="post">
+                    <h3>${data.Klacht}</h3>
+                    <input type="hidden" value="${data.ID}" name="comID">
+                    <input type="hidden" value="${data.Breedtegraad, data.Lengtegraad}" name="location">
+                    <input type="text" value="${data.Naam}" name="name" readonly>
+                    <input type="text" value="${data.Email}" name="email" readonly>
+
+                    <input type="text" value="${data.Klacht}" name="title">
+                    <textarea name="desc" rows="4" cols="50">${data.Beschrijving}</textarea>
+                    <button type="submit" name="updCom">Wijzigen</button>
+                    <button type="submit" name="delCom" class="delete">Verwijderen</button>
+                </form>
             `;
             document.getElementById("displayArea").classList.remove("hidden");
         }

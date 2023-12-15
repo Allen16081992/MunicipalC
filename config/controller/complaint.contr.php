@@ -41,4 +41,16 @@
                 $this->setComplaint($this->name, $this->email, $this->title, $this->desc, $this->gps, $this->comID);
             }
         }
+
+        public function verifyID($data) {
+            // Informatie halen uit $data
+            $this->comID = $data['comID'];
+
+            if(!$this->emptyCID()) {
+                // Geen geldig ID.
+                $_SESSION['error'] = 'Geen geldig ID.';
+            } else { 
+                $this->deleteComplaint($this->comID); 
+            }
+        }
     }

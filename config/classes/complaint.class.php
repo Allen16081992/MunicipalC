@@ -45,13 +45,11 @@
                 $this->BindExecutor($stmt);
 
                 $stmt = null;
-                $_SESSION['success'] = 'Bedankt voor het doorgeven! Wij hebben uw klacht goed ontvangen.';
+                $_SESSION['success'] = 'Bedankt voor het doorgeven! Wij hebben uw klacht in goede orde ontvangen.';
             }
         }
 
-        protected function deleteComplaint($data) {
-            $comID = $data['comID'];
-
+        protected function deleteComplaint($comID) {
             $stmt = $this->connect()->prepare('DELETE FROM klachten WHERE ID = :comID');
             $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
          
@@ -62,30 +60,31 @@
             $_SESSION['success'] = 'Klacht is verwijderd.';           
         }
 
-        protected function searchComplaint($data) {
+        // Deprecated, use the new JSON fetcher in 'viewComplaints.conf.php'
+        //protected function searchComplaint($data) {
             // Extract values from $data
-            if (isset($data['name'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Naam = :name');
-                $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
+        //    if (isset($data['name'])) {
+        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Naam = :name');
+        //        $stmt->bindParam(":name", $data['name'], PDO::PARAM_STR);
 
-            } elseif(isset($data['email'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Email = :email');
-                $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
+        //    } elseif(isset($data['email'])) {
+        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Email = :email');
+        //        $stmt->bindParam(":email", $data['email'], PDO::PARAM_STR);
 
-            } elseif(isset($data['title'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Klacht = :title');
-                $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
+        //    } elseif(isset($data['title'])) {
+        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Klacht = :title');
+        //        $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
 
-            } elseif(isset($data['comID'])) {
-                $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comID');
-                $stmt->bindParam(":comID", $data['comID'], PDO::PARAM_INT);
-            }
+        //    } elseif(isset($data['comID'])) {
+        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comID');
+        //        $stmt->bindParam(":comID", $data['comID'], PDO::PARAM_INT);
+        //    }
 
             // If this 'trait' fails, kick back to homepage.
-            $this->BindExecutor($stmt); 
-            $this->BindLoubna($stmt); 
+        //    $this->BindExecutor($stmt); 
+        //    $this->BindLoubna($stmt); 
 
-            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $row;
-        }
+        //    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //    return $row;
+        //}
     }

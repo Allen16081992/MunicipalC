@@ -2,7 +2,7 @@
     class Database {
         private $host = 'localhost';
         private $user = 'root';
-        private $passw = ''; // Your database password
+        private $passw = '';
         private $db = 'municipaldb';
         private $conn;
     

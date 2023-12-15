@@ -5,18 +5,7 @@
 
     $complaint = new ComplaintControl();
 
-    if (isset($_POST['creCom'])) { // Create
-        // Store the submitted data in an array
-        $data = [
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'title' => $_POST['title'],
-            'desc' => $_POST['desc'],
-            'location' => $_POST['location']
-        ];
-        $complaint->verifyComplaint($data);
-
-    } elseif (isset($_POST['updCom'])) { // Update
+    if (isset($_POST['creCom']) || isset($_POST['updCom'])) { // Create - Update
         // Store the submitted data in an array
         $data = [
             'name' => $_POST['name'],
@@ -27,23 +16,11 @@
             'comID' => $_POST['comID']
         ];
         $complaint->verifyComplaint($data);
+
     } elseif (isset($_POST['delCom'])) { // Delete
         // Catch the submitted data
         $data = ['comID' => $_POST['comID'] ];
-        $complaint->deleteComplaint($data);
-
-    } elseif (isset($_POST['searchCom'])) { // Search
-        // Store the submitted data in an array
-        $data = [
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'title' => $_POST['title'],
-            'desc' => $_POST['desc'],
-            'gps' => $_POST['location'],
-            'comID' => $_POST['comID']
-        ];
-        $complaint->searchComplaint($data);
-
+        $complaint->verifyID($data);
     }
 
     header("location: ../index.php");
