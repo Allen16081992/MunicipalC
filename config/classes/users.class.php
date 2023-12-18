@@ -6,11 +6,14 @@
         use InputCheck;
 
         protected function updateUser($ID, $uid, $pwd, $email) {
-            // Verify if a Password change was requested.
+            // Verify if a Password change was requested and is NOT empty.
             if (!empty($_POST['pwd'])) {
+                // Encrypt password.
+                $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
                 // Prepare a database querry 
                 $stmt = $this->connect()->prepare('UPDATE gebruikers SET Wachtwoord = :pwd, Gebruikersnaam = :uid, Email = :email WHERE ID = :ID;');
-                $stmt->bindParam(":pwd", $pwd, PDO::PARAM_STR);
+                $stmt->bindParam(":pwd", $hashedPwd, PDO::PARAM_STR);
             } else {
                 // Prepare a shorter database querry 
                 $stmt = $this->connect()->prepare('UPDATE gebruikers SET Gebruikersnaam = :uid, Email = :email WHERE ID = :ID;');
@@ -28,6 +31,7 @@
             $_SESSION['success'] = 'Account is bijgewerkt.';
         }
 
+        // ====================================================
         // Loubna's functie voor Delete. Schrijf maar hieronder.
         // ............................
         // ............................
