@@ -22,7 +22,7 @@ function submitForm() {
             document.getElementById("displayArea").innerHTML = `
                 <form action="config/complaint.conf.php" method="post">
                     <h3>${data.Klacht}</h3>
-                    <input type="hidden" value="${data.ID}" name="comID">
+                    <input type="hidden" value="${data.ID}" name="ID">
                     <input type="hidden" value="${data.Breedtegraad, data.Lengtegraad}" name="location">
                     <input type="text" value="${data.Naam}" name="name" readonly>
                     <input type="text" value="${data.Email}" name="email" readonly>

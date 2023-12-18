@@ -1,4 +1,6 @@
 <?php // Loubna Faress
+require_once 'include/session_manager.inc.php';
+
 if (isset($_POST["submit"])){
 
     // grabbing the data

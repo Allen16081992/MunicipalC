@@ -3,7 +3,7 @@
 
         private function emptyCID() {
             // Controleer of niets is opgegeven.
-            return !(empty($this->comID));
+            return !(empty($this->ID));
         }
 
         private function emptyUid() {
@@ -24,6 +24,11 @@
         private function emptyTitle() {
             // Controleer of niets is opgegeven.
             return !(empty($this->title));
+        }
+
+        private function emptySummary() {
+            // Controleer of niets is opgegeven.
+            return !(empty($this->desc));
         }
 
         private function emptyGPS() {
@@ -75,7 +80,7 @@
 
         private function BindLoubna($stmt) {
             // Als het aantal rijen uit tabel niks geeft, ga naar homepage
-            if($stmt->rowCount() == 0) {
+            if($stmt->rowCount() === 0) {
                 $stmt = null;
                 $_SESSION['error'] = 'Niets gevonden.';
                 header("location: ../index.php");

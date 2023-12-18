@@ -1,9 +1,7 @@
 <?php // Loubna Faress
   require_once '././include/session_manager.inc.php';
-  require_once '././controller/errorchecks.contr.php';
 
   class Login extends Database {
-    use InputCheck;
 
     protected function getUser($uid, $pwd) {
       
@@ -16,9 +14,6 @@
         header("location: ../index.php?error=stmtfailed");
         exit();
       }
-
-      // If this 'trait' fails, kick back to homepage.
-      $this->BindLoubna($stmt); 
 
       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $checkPwd = password_verify($pwd, $user[0]["Wachtwoord"]);

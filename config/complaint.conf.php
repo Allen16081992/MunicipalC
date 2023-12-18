@@ -13,13 +13,13 @@
             'title' => $_POST['title'],
             'desc' => $_POST['desc'],
             'location' => $_POST['location'],
-            'comID' => $_POST['comID']
+            'ID' => $_POST['ID']
         ];
         $complaint->verifyComplaint($data);
 
     } elseif (isset($_POST['delCom'])) { // Delete
         // Catch the submitted data
-        $data = ['comID' => $_POST['comID'] ];
+        $data = ['ID' => $_POST['ID'] ];
         $complaint->verifyID($data);
     }
 

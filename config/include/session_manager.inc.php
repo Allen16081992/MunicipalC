@@ -97,26 +97,26 @@
         }
     }
 
-    function buildManager($complaintsData) {
-        echo '
-            <section id="account">
+    function buildManager($complaintsData, $userData) {
+        echo "
+            <section id='account'>
                 <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
-                <form action="config/classes/update.class.php" method="post">
-                    <input type="hidden" name="ID" value="ID">
-                    <label for="uid">Gebruikersnaam</label>
-                    <input type="text" name="uid">
-                    <label for="email">Email</label>
-                    <input type="text" name="email">
-                    <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd">
-                    <label for="pwdRepeat">Herhaal Wachtwoord</label>
-                    <input type="password" name="pwdRepeat">
-                    <button type="submit" name="opslaan">Opslaan</button>
-                    <button type="submit" name="verwijder" class="delete">Account Sluiten</button>
+                <form action='config/users.conf.php' method='post'>
+                    <input type='hidden' name='ID' value='{$userData['ID']}'>
+                    <label for='uid'>Gebruikersnaam</label>
+                    <input type='text' name='uid' value='{$userData['Gebruikersnaam']}'> 
+                    <label for='email'>Email</label>
+                    <input type='text' name='email' value='{$userData['Email']}'>
+                    <label for='pwd'>Wachtwoord</label>
+                    <input type='password' name='pwd' placeholder='Optioneel'>
+                    <label for='pwdRepeat'>Herhaal Wachtwoord</label>
+                    <input type='password' name='pwdRepeat' placeholder='*Vereist als je het wachtwoord aanpast'>
+                    <button type='submit' name='opslaan'>Opslaan</button>
+                    <button type='submit' name='verwijder' class='delete'>Account Sluiten</button>
                 </form>
-            </section>
-
+            </section>";
+        echo '
             <section id="admin" class="hidden">
                 <h2>Klachten Paneel</h2>
                 <p>Klik op een markering om de klacht van deze locatie te zien.</p>

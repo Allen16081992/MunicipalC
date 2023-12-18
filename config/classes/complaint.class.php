@@ -5,7 +5,7 @@
     class Complaint extends Database {
         use InputCheck;
 
-        protected function setComplaint($name, $email, $title, $desc, $gps, $comID) {
+        protected function setComplaint($name, $email, $title, $desc, $gps, $ID) {
             // Split the coordinates using the comma as a delimiter
             $splitCoords = explode(', ', $gps);
 
@@ -13,10 +13,10 @@
             $latitude = str_replace(',', '', $splitCoords[0]);
             $longitude = str_replace(',', '', $splitCoords[1]);
 
-            // If $comID is provided, it's an update; otherwise, it's a new complaint
-            if ($comID !== null) {
+            // If $ID is provided, it's an update; otherwise, it's a new complaint
+            if ($ID !== null) {
                 // Update the complaint
-                $stmt = $this->connect()->prepare("UPDATE klachten SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :comID;");
+                $stmt = $this->connect()->prepare("UPDATE klachten SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :ID;");
                 $stmt->bindParam(":name", $name, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
                 $stmt->bindParam(":title", $title, PDO::PARAM_STR);
@@ -24,7 +24,7 @@
                 $stmt->bindParam(":latitude", $latitude, PDO::PARAM_STR);
                 $stmt->bindParam(":longitude", $longitude, PDO::PARAM_STR);
                 // Watch out, this is a numerical value!
-                $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
+                $stmt->bindParam(":ID", $ID, PDO::PARAM_INT);
 
                 // If this 'trait' fails, kick back to homepage.
                 $this->BindExecutor($stmt);
@@ -49,9 +49,9 @@
             }
         }
 
-        protected function deleteComplaint($comID) {
-            $stmt = $this->connect()->prepare('DELETE FROM klachten WHERE ID = :comID');
-            $stmt->bindParam(":comID", $comID, PDO::PARAM_INT);
+        protected function deleteComplaint($ID) {
+            $stmt = $this->connect()->prepare('DELETE FROM klachten WHERE ID = :ID');
+            $stmt->bindParam(":ID", $ID, PDO::PARAM_INT);
          
             // If this 'trait' fails, kick back to homepage.
             $this->BindExecutor($stmt);
@@ -75,9 +75,9 @@
         //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE Klacht = :title');
         //        $stmt->bindParam(":title", $data['title'], PDO::PARAM_STR);
 
-        //    } elseif(isset($data['comID'])) {
-        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comID');
-        //        $stmt->bindParam(":comID", $data['comID'], PDO::PARAM_INT);
+        //    } elseif(isset($data['ID'])) {
+        //        $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :ID');
+        //        $stmt->bindParam(":ID", $data['ID'], PDO::PARAM_INT);
         //    }
 
             // If this 'trait' fails, kick back to homepage.

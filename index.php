@@ -43,7 +43,7 @@
 
         if ($complaintsData) {
             // Here, you can use the data, for example, with the buildManager function
-            buildManager($complaintsData);
+            buildManager($complaintsData, $userData);
         } else { echo "Geen klachten gevonden."; }
       }
     ?>
