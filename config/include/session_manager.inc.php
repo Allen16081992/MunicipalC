@@ -43,8 +43,9 @@
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
-                    <h2>Welkom bij Gemeente Havenburg</h2>
-                    <p>Explore and engage with your community.</p>
+                    <h2>Welkom, Hoe kunnen wij u helpen?</h2>
+                    <p>Hier kunt u terecht met eventuele klachten en opmerkingen over uw omgeving.</p>
+                    <button data-section="complaints">Ik wil iets melden</button>
                 </section>
             
                 <section id="login" class="hidden">
@@ -85,10 +86,10 @@
                         <input type="text" name="email">
                         <label for="title">Uw Klacht</label>
                         <input type="text" name="title">
-                        <label for="desc">Beschrijving</label>
-                        <textarea name="desc" rows="4" cols="50"></textarea>
+                        <label for="desc">Een korte beschrijving</label>
+                        <textarea name="desc" rows="2"></textarea>
                         <label for="location">Locatie</label>
-                        <input type="text" name="location" id="location">
+                        <input type="text" name="location" id="location" readonly>
                         <div id="map"></div>
                         <button type="submit" name="creCom">Verzenden</button>
                     </form> 

@@ -21,9 +21,8 @@
 <body>
     <header>
         <div class="logo-container">
-        <a href="index.php"><img src="img/MunicCrest.png" height="40" alt="Brand Signature"></a>
+        <a href="index.php"><img src="img/logo-base.svg" height="40" alt="Brand Signature"></a>
         </div>
-        <h1>Gemeente Havenburg</h1>
         <nav>
             <ul>
                 <li></li>

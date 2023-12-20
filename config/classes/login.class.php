@@ -16,14 +16,20 @@
       }
 
       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      $checkPwd = password_verify($pwd, $user[0]["Wachtwoord"]);
+
+      //============Dhr. Allen Pieter============ 20-12-2023
+      // Gebruik nu ook de database kolom 'Salt'
+      //=========================================
+
+      $checkPwd = password_verify($pwd.$user[0]['Salt'], $user[0]["Wachtwoord"]);
 
       if($checkPwd == false) {
         // Wrong password, redirect to login page with an error message
+        $_SESSION['error'] = 'Het wachtwoord is fout.';
         header("location: ../index.php?error=wrongpassword");
         exit();  
       } elseif($checkPwd == true) {
-        // Password is correct, set session variables
+        // Password is correct, set user in session variables
         $_SESSION["gebruiker_id"] = $user[0]["ID"];
         $_SESSION["gebruiker_naam"] = $user[0]["Gebruikersnaam"];
 

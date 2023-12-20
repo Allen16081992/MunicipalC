@@ -20,18 +20,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Add click event listeners to navigation buttons
+    // Add click event listeners to navigation buttons and the button inside the section
     navButtons.forEach(function (button) {
         button.addEventListener('click', function (event) {
-            event.preventDefault();
-            var sectionId = button.getAttribute('data-section');
-            showSection(sectionId);
-
-            // Check if the button clicked is the Logout button
-            if (sectionId === 'logout') {
-                // Redirect to logout.php
-                window.location.href = 'logout.php';
-            }
+            handleButtonClick(event);
         });
     });
+
+    // Add click event listener to the button inside the section
+    var sectionButton = document.querySelector('section button');
+    if (sectionButton) {
+        sectionButton.addEventListener('click', function (event) {
+            handleButtonClick(event);
+        });
+    };
+
+    function handleButtonClick(event) {
+        event.preventDefault();
+        var button = event.target;
+        var sectionId = button.getAttribute('data-section');
+        showSection(sectionId);
+
+        // Check if the button clicked is the Logout button
+        if (sectionId === 'logout') {
+            // Redirect to logout.php
+            window.location.href = 'logout.php';
+        }
+    }
 });

@@ -5,6 +5,7 @@
     class DbFetcher extends Database {
         use InputCheck;
 
+        // Fetch all Complaints
         public function fetchComplaints() {
             try { // Prepare a database querry, then Invoke errorcheck 'BindExecutor'.
                 $stmt = $this->connect()->prepare("SHOW COLUMNS FROM klachten");
@@ -30,6 +31,7 @@
             }
         }
 
+        // Fetch all Markers that correspond to a Complaint
         public function fetchMarkerJSON() {
             try { // Prepare a database querry, then Invoke errorcheck 'BindExecutor'.
                 $stmt = $this->connect()->prepare('SELECT Klacht, Breedtegraad, Lengtegraad FROM klachten');
@@ -47,6 +49,7 @@
             }
         }
 
+        // Fetch a specific Complaint
         public function fetchComplaintID($comkey) {
             try { // Prepare a database querry, then Invoke errorcheck 'BindExecutor.'
                 $stmt = $this->connect()->prepare('SELECT * FROM klachten WHERE ID = :comkey');
@@ -60,6 +63,24 @@
                     // Output a message indicating failure
                     echo json_encode(["error" => "Failed to encode data"]);
                 } else {
+                    //===============================================
+                    // Calculate the time difference in seconds
+                    $timeDifference = time() - strtotime($fetchedData['Datum']);
+
+                    // Calculate the number of seconds in a year (with leap years)
+                    $secondsInYear = 365 * 24 * 60 * 60 + (int)(date('L') * 24 * 60 * 60);
+
+                    // Calculate the number of seconds in two weeks
+                    $secondsInTwoWeeks = 2 * 7 * 24 * 60 * 60;
+
+                    // Check if the time difference is greater than or equal to a year
+                    if ($timeDifference >= $secondsInYear) {
+                        $fetchedData['Waarschuwing'] = 'Deze klacht is ouder dan een jaar.<br> Verwijder het comform de Algemene Verordening Gegevensbescherming.';
+                    } elseif ($timeDifference >= $secondsInTwoWeeks) {
+                        $fetchedData['Risico'] = 'Deze klacht is ouder dan 2 weken.';
+                    }
+                    //===============================================
+
                     // Output the JSON-encoded data
                     echo json_encode($fetchedData);
                 }
@@ -71,13 +92,14 @@
             }
         } 
         
+        // Fetch User information for the 'Account Panel'
         public function fetchUserData($ID) {
             // Prepare a database querry, then Invoke errorcheck 'BindExecutor.'
             $stmt = $this->connect()->prepare('SELECT ID, Gebruikersnaam, Email FROM gebruikers WHERE ID = :ID;');
             $stmt->bindParam(":ID", $ID, PDO::PARAM_INT);
             $this->BindExecutor($stmt);
 
-            // Oh yeah, and 'BindLoubna' to a table...'
+            // Oh yeah, and 'BindLoubna' to a table... Then, convert her from Islam to Christianity.'
             $this->BindLoubna($stmt); 
 
             $userData = $stmt->fetch(PDO::FETCH_ASSOC);

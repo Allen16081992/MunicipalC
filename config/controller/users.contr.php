@@ -16,10 +16,10 @@
             $this->ID = $data['ID'];
             $this->uid = $data['uid'];
             $this->email = $data['email'];
-            $this->pwd = isset($data['pwd']) ? $data['pwd'] : null;
-            $this->pwdRepeat = isset($data['pwdRepeat']) ? $data['pwdRepeat'] : null;
+            $this->pwd = $data['pwd'];
+            $this->pwdRepeat = $data['pwdRepeat'];
 
-            if (!empty($_POST['pwd']) && !empty($POST['pwdRepeat'])) {
+            if (isset($data['pwd']) && isset($data['pwdRepeat'])) {
                 if(!$this->emptyUid()) {
                     // Geen naam opgegeven.
                     $_SESSION['error'] = 'Vul uw gebruikersnaam in.';

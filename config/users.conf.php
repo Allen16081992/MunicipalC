@@ -7,7 +7,7 @@
 
     if (isset($_POST['opslaan'])) { // Update form
         // Verify if a new password was submitted
-        if (!empty($_POST['pwd']) && !empty($POST['pwdRepeat'])) {
+        if (!empty($_POST['pwd']) || !empty($POST['pwdRepeat'])) {
             // If there was, store the submitted data in this array
             $data = [
                 'ID' => $_POST['ID'],

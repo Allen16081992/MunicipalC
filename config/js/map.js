@@ -22,13 +22,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function handleButtonClick(event) {
+        event.preventDefault();
+        var button = event.target;
+        var sectionId = button.getAttribute('data-section');
+        showSection(sectionId);
+    }
+
+    // Add click event listeners to navigation buttons and the button inside the section
     navButtons.forEach(function (button) {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            var sectionId = button.getAttribute('data-section');
-            showSection(sectionId);
-        });
+        button.addEventListener('click', handleButtonClick);
     });
+
+    // Add click event listener to the button inside the section
+    var sectionButton = document.querySelector('section button');
+    if (sectionButton) {
+        sectionButton.addEventListener('click', handleButtonClick);
+    };
 
     function initializeMap() {
         // Initialize the map globally
