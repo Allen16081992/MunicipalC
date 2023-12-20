@@ -120,7 +120,7 @@
         echo '
             <section id="admin" class="hidden">
                 <h2>Klachten Paneel</h2>
-                <p>Klik op een markering om de klacht van deze locatie te zien.</p>
+                <p>Klik op een markering om een klacht te bekijken.</p>
                 <table><thead><tr>
         ';
         // Display column names as table headers
