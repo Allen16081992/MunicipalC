@@ -1,7 +1,7 @@
 <?php // Loubna Faress
 require_once 'include/session_manager.inc.php';
 
-if (isset($_POST["submit"])){
+if (isset($_POST["login"])){
 
     // grabbing the data
     $uid = $_POST["uid"];

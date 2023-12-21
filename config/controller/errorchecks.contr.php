@@ -38,8 +38,8 @@
 
         private function emptyPasswords() {
             // Controleer of niets is opgegeven.
-            if (isset($this->pwd, $this->pwdRepeat)) {
-                return !(empty($this->pwd) || empty($this->pwdRepeat));
+            if (isset($this->pwd) && isset($this->pwdRepeat)) {
+                return !(empty($this->pwd) && empty($this->pwdRepeat));
             } else {
                 return !(empty($this->pwd));
             }
@@ -72,7 +72,7 @@
             // Geef een foutmelding als de handeling mislukt.
             if(!$stmt->execute()) {
                 $stmt = null;
-                $_SESSION['error'] = 'Database query failed.';
+                $_SESSION['error'] = 'Database inquisitie mislukt.';
                 header('location: ../index.php');
                 exit();
             }

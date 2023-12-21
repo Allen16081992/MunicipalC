@@ -29,12 +29,10 @@
         header("location: ../index.php?error=wrongpassword");
         exit();  
       } elseif($checkPwd == true) {
+
         // Password is correct, set user in session variables
         $_SESSION["gebruiker_id"] = $user[0]["ID"];
         $_SESSION["gebruiker_naam"] = $user[0]["Gebruikersnaam"];
-
-        // Show a message if Login works.
-        $_SESSION['success'] = 'U bent ingelogd!';
       }
 
       // Close the statement

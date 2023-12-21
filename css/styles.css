@@ -46,6 +46,13 @@ main {
   text-align: center; /* Center the content */
 }
 
+th {
+  background-color: #333;
+  color: none;
+}
+th, td { border: none; }
+td:hover { cursor: default; }
+
 .date-error {
   color: var(--error-color);
   border-bottom: 2px solid var(--error-color); 

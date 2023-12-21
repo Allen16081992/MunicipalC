@@ -56,7 +56,7 @@
                         <input type="text" name="uid">
                         <label for="pwd">Wachtwoord</label>
                         <input type="password" name="pwd">
-                        <button type="submit" name="submit">Inloggen</button>
+                        <button type="submit" name="login">Inloggen</button>
                     </form> 
                 </section>
             
@@ -72,7 +72,7 @@
                         <input type="password" name="pwd">
                         <label for="pwdRepeat">Herhaal Wachtwoord</label>
                         <input type="password" name="pwdRepeat">
-                        <button type="submit" name="submit">Registreren</button>
+                        <button type="submit" name="register">Registreren</button>
                     </form> 
                 </section>
             
@@ -103,18 +103,20 @@
             <section id='account'>
                 <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
-                <form action='config/users.conf.php' method='post'>
+
+                <form action='config/test.conf.php' method='post'>
                     <input type='hidden' name='ID' value='{$userData['ID']}'>
                     <label for='uid'>Gebruikersnaam</label>
                     <input type='text' name='uid' value='{$userData['Gebruikersnaam']}'> 
                     <label for='email'>Email</label>
                     <input type='text' name='email' value='{$userData['Email']}'>
                     <label for='pwd'>Wachtwoord</label>
-                    <input type='password' name='pwd' placeholder='Optioneel'>
+                    <input type='password' name='pwd'>
                     <label for='pwdRepeat'>Herhaal Wachtwoord</label>
-                    <input type='password' name='pwdRepeat' placeholder='*Vereist als je het wachtwoord aanpast'>
-                    <button type='submit' name='opslaan'>Opslaan</button>
-                    <button type='submit' name='verwijder' class='delete'>Account Sluiten</button>
+                    <input type='password' name='pwdRepeat'>
+                    
+                    <button type='submit' name='updAcc'>Wijzigen</button>
+                    <button type='submit' name='delAcc' class='delete'>Account Sluiten</button>
                 </form>
             </section>";
         echo '
