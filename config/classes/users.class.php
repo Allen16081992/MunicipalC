@@ -28,8 +28,23 @@
             $_SESSION['success'] = 'Account is bijgewerkt.';
         }
 
-        // Loubna's functie voor Delete. Schrijf maar hieronder.
-        // ............................
-        // ............................
-        // ............................
+        protected function deleteUser($ID) {
+            // Prepare a database query
+            $stmt = $this->connect()->prepare('DELETE FROM gebruikers WHERE ID = :ID;');
+            // Watch out, this is a numerical value!
+            $stmt->bindParam(":ID", $ID, PDO::PARAM_INT);
+        
+            // Invoke errorcheck 'BindExecutor.'
+            $this->BindExecutor($stmt);
+            $stmt = null;
+        
+            // Clear the session and destroy it on a successful account deletion
+            session_start();
+            session_unset();
+            session_destroy();
+            session_start();
+        
+            // Show a message if the account deletion works.
+            $_SESSION['success'] = 'Account is verwijderd. U kunt niet meer inloggen.';
+        }
     }

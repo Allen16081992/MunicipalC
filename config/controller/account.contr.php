@@ -1,5 +1,4 @@
 <?php // Dhr. Allen Pieter
-
     class AccountControl extends Account {
         // Consolideer eigenschappen (properties)
         use InputCheck;
@@ -21,8 +20,8 @@
 
         public function verifyUser() {
             // Controleer of een wachtwoord was opgegeven
-            if(!$this->pwd = null && !$this->pwdRepeat = null) {
-                if($this->passwMatcher()) {
+            if ($this->pwd != null && $this->pwdRepeat != null) {
+                if ($this->passwMatcher()) {
                     // Wachtwoorden moeten gelijk zijn.
                     $_SESSION['error'] = 'Wachtwoorden zijn niet gelijk.';
                 }
@@ -49,6 +48,9 @@
 
             } elseif (isset($_POST['delAcc'])) { // Delete
                 $this->deleteUser($this->ID, $this->uid, $this->email,);
+            } else {
+                // Ongeldige invoer.
+                $_SESSION['error'] = 'Knop verificatie mislukt.';
             }
         }  
     }

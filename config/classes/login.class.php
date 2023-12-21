@@ -31,6 +31,7 @@
       } elseif($checkPwd == true) {
 
         // Password is correct, set user in session variables
+        $_SESSION['success'] = 'U bent ingelogd.';
         $_SESSION["gebruiker_id"] = $user[0]["ID"];
         $_SESSION["gebruiker_naam"] = $user[0]["Gebruikersnaam"];
       }

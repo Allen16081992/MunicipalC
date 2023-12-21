@@ -23,5 +23,5 @@
     $account->verifyUser();
 
     // Pagina opnieuw inladen.
-    //header("location: ../index.php");
-    //exit();
+    header("location: ../index.php");
+    exit();

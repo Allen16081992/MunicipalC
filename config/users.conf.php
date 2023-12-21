@@ -3,12 +3,9 @@
     require_once "classes/users.class.php";
     require_once "controller/users.contr.php";
 
-    $users = new UsersControl();
-
     if (isset($_POST['opslaan'])) { // Update form
-
         // Verify if a new password was submitted
-        if (isset($_POST['pwd']) && isset($POST['pwdRepeat'])) {
+        if (isset($_POST['pwd']) && isset($_POST['pwdRepeat'])) {
             // If there was, store the submitted data in this array
             $data = [
                 'ID' => $_POST['ID'],
@@ -25,11 +22,16 @@
                 'email' => $_POST['email']
             ];
         }
-        $users->verifyUser($data);
+    } elseif (isset($_POST['verwijder'])) { // Update form
+        $data = [
+            'ID' => $_POST['ID']
+        ];
     } else {
         // Fout in het formulier.
-        $_SESSION['error'] = 'Fout in het formulier.';
+        $_SESSION['error'] = "Verifiëren van het formulier voor opslaan en verwijderen mislukt.";
     }
+    $users = new UsersControl();
+    $users->verifyUser($data);
 
     header("location: ../index.php");
     exit();

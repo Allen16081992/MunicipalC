@@ -39,7 +39,7 @@
         private function emptyPasswords() {
             // Controleer of niets is opgegeven.
             if (isset($this->pwd) && isset($this->pwdRepeat)) {
-                return !(empty($this->pwd) && empty($this->pwdRepeat));
+                return !(empty($this->pwd) || empty($this->pwdRepeat));
             } else {
                 return !(empty($this->pwd));
             }

@@ -19,31 +19,36 @@
             $this->pwd = $data['pwd'];
             $this->pwdRepeat = $data['pwdRepeat'];
 
-            if (!empty($pwd) && !empty($pwdRepeat)) {
-                if(!$this->emptyUid()) {
-                    // Geen naam opgegeven.
-                    $_SESSION['error'] = 'Vul uw gebruikersnaam in.';
-                } elseif(!$this->emptyEmail()) {
-                    // Geen email informatie opgegeven.
-                    $_SESSION['error'] = 'Vul uw email adres in.';
-                } elseif(!$this->emptyPasswords()) {
-                    // Geen wachtwoord opgegeven.
-                    $_SESSION['error'] = 'Voer uw Wachtwoord in.';
-                } elseif (!$this->passwMatcher()) {
-                    // Geen wachtwoord overeenkomst.
-                    $_SESSION['error'] = 'Beide wachtwoorden moeten gelijk zijn.';
-                } else {
-                    $this->updateUser($this->ID, $this->uid, $this->pwd, $this->email);
-                }
+            if (isset($_POST['verwijder'])) {
+                // If the 'verwijder' button is set, call the deleteUser function
+                $this->deleteUser($this->ID);
             } else {
-                if(!$this->emptyUid()) {
-                    // Geen naam opgegeven.
-                    $_SESSION['error'] = 'Vul uw gebruikersnaam in.';
-                } elseif(!$this->emptyEmail()) {
-                    // Geen email informatie opgegeven.
-                    $_SESSION['error'] = 'Vul uw email adres in.';
+                if (!empty($this->pwd) && !empty($this->pwdRepeat)) {
+                    if(!$this->emptyUid()) {
+                        // Geen naam opgegeven.
+                        $_SESSION['error'] = 'Vul uw gebruikersnaam in.';
+                    } elseif(!$this->emptyEmail()) {
+                        // Geen email informatie opgegeven.
+                        $_SESSION['error'] = 'Vul uw email adres in.';
+                    } elseif(!$this->emptyPasswords()) {
+                        // Geen wachtwoord opgegeven.
+                        $_SESSION['error'] = 'Voer uw Wachtwoord in.';
+                    } elseif (!$this->passwMatcher()) {
+                        // Geen wachtwoord overeenkomst.
+                        $_SESSION['error'] = 'Beide wachtwoorden moeten gelijk zijn.';
+                    } else {
+                        $this->updateUser($this->ID, $this->uid, $this->pwd, $this->email);
+                    }
                 } else {
-                    $this->updateUser($this->ID, $this->uid, $this->pwd, $this->email);
+                    if(!$this->emptyUid()) {
+                        // Geen naam opgegeven.
+                        $_SESSION['error'] = 'Vul uw gebruikersnaam in.';
+                    } elseif(!$this->emptyEmail()) {
+                        // Geen email informatie opgegeven.
+                        $_SESSION['error'] = 'Vul uw email adres in.';
+                    } else {
+                        $this->updateUser($this->ID, $this->uid, $this->pwd, $this->email);
+                    }
                 }
             }
         }

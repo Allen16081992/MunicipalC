@@ -104,7 +104,7 @@
                 <h2>Account Paneel</h2>
                 <p>Wijzig of verwijder je eigen account.</p>
 
-                <form action='config/test.conf.php' method='post'>
+                <form action='config/account.conf.php' method='post'>
                     <input type='hidden' name='ID' value='{$userData['ID']}'>
                     <label for='uid'>Gebruikersnaam</label>
                     <input type='text' name='uid' value='{$userData['Gebruikersnaam']}'> 
