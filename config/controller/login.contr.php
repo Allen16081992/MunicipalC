@@ -24,7 +24,7 @@ class LoginContr extends Login {
             $_SESSION['error'] = 'Voer uw Wachtwoord in.';
             header("location: ../index.php?error=emptypassword");
             exit();
-        }     
+        } 
 
         // Go on with logging in
         $this->getUser($this->uid, $this->pwd);

@@ -21,10 +21,12 @@
         public function verifyUser() {
             // Controleer of een wachtwoord was opgegeven
             if ($this->pwd != null && $this->pwdRepeat != null) {
-                if ($this->passwMatcher()) {
+                if (!$this->passwMatcher()) {
                     // Wachtwoorden moeten gelijk zijn.
                     $_SESSION['error'] = 'Wachtwoorden zijn niet gelijk.';
-                }
+                } else 
+                    $_SESSION['success'] = 'Wachtwoord zijn bijgewerkt.';
+                
             }
 
             // Voer overige controles uit
@@ -44,10 +46,10 @@
 
             // Verifieer of het account Gewijzigd of Verwijderd moet worden
             if (isset($_POST['updAcc'])) { // Update
-                $this->updateUser($this->ID, $this->uid, $this->email, $this->pwd);
+                $this->updateUser($this->uid, $this->email, $this->pwd, $this->ID);
 
             } elseif (isset($_POST['delAcc'])) { // Delete
-                $this->deleteUser($this->ID, $this->uid, $this->email,);
+                $this->deleteUser($this->ID);
             } else {
                 // Ongeldige invoer.
                 $_SESSION['error'] = 'Knop verificatie mislukt.';

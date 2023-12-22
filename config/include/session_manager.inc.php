@@ -115,8 +115,8 @@
                     <label for='pwdRepeat'>Herhaal Wachtwoord</label>
                     <input type='password' name='pwdRepeat'>
                     
-                    <button type='submit' name='updAcc'>Wijzigen</button>
-                    <button type='submit' name='delAcc' class='delete'>Account Sluiten</button>
+                    <input type='submit' name='updAcc' value='Wijzigen'>
+                    <input type='submit' name='delAcc' value='Account Sluiten'>
                 </form>
             </section>";
         echo '

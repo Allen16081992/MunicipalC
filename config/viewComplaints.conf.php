@@ -99,7 +99,7 @@
             $stmt->bindParam(":ID", $ID, PDO::PARAM_INT);
             $this->BindExecutor($stmt);
 
-            // Oh yeah, and 'BindLoubna' to a table... Then, convert her from Islam to Christianity.'
+            // Oh yeah, and 'BindLoubna'
             $this->BindLoubna($stmt); 
 
             $userData = $stmt->fetch(PDO::FETCH_ASSOC);

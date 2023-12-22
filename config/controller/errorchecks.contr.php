@@ -59,6 +59,8 @@
         }
 
         private function passwMatcher() {
+            // /echo $this->pwd;
+            // echo $this->pwdRepeat;
             // Controleer of wachtwoorden gelijk zijn.
             return $this->pwd === $this->pwdRepeat;
         }
@@ -70,11 +72,12 @@
 
         private function BindExecutor($stmt) {
             // Geef een foutmelding als de handeling mislukt.
-            if(!$stmt->execute()) {
+            if($stmt->execute() == false) {
                 $stmt = null;
                 $_SESSION['error'] = 'Database inquisitie mislukt.';
                 header('location: ../index.php');
                 exit();
+                return false;
             }
         }
 
@@ -83,8 +86,9 @@
             if($stmt->rowCount() === 0) {
                 $stmt = null;
                 $_SESSION['error'] = 'Niets gevonden.';
-                header("location: ../index.php");
-                exit();  
+                //header("location: ../index.php");
+                //exit();  
+                return false;
             }
         }
     }
