@@ -82,9 +82,6 @@ td:hover { cursor: default; }
 .current {
   font-style: oblique;
 }
-.delete {
-  background: var(--error-color);
-}
 
 #map {
   height: 400px; /* Set a fixed height or adjust as needed */
@@ -103,8 +100,11 @@ td:hover { cursor: default; }
   border: 2px solid black;
 }
 .complaint-card h3,
-.complaint-card span,
-.complaint-card p {
+.complaint-card input[name="name"],
+.complaint-card input[name="email"],
+.complaint-card input[name="title"],
+.complaint-card input[name="location"],
+.complaint-card textarea {
   display: block;
   margin-bottom: 8px;  /* Add margin to separate each element */
 }

@@ -24,14 +24,14 @@ function submitForm() {
                     ${data.Waarschuwing ? `<p class="date-error">${data.Waarschuwing}</p>` : data.Risico ? `<p class="date-error">${data.Risico}</p>` : `<p>${data.Datum}</p>`}
                     <h3>${data.Klacht}</h3>
                     <input type="hidden" value="${data.ID}" name="ID">
-                    <input type="hidden" value="${data.Breedtegraad, data.Lengtegraad}" name="location">
-                    <input type="text" value="${data.Naam}" name="name" readonly>
-                    <input type="text" value="${data.Email}" name="email" readonly>
+                    <input type="text" value="${data.Naam}" name="name">
+                    <input type="text" value="${data.Email}" name="email">
 
                     <input type="text" value="${data.Klacht}" name="title">
                     <textarea name="desc" rows="4" cols="50">${data.Beschrijving}</textarea>
-                    <button type="submit" name="updCom">Wijzigen</button>
-                    <button type="submit" name="delCom" class="delete">Verwijderen</button>
+                    <input type="text" value="${data.Breedtegraad},${data.Lengtegraad}" name="location" readonly>
+                    <input type='submit' name='updCom' value='Wijzigen'>
+                    <input type='submit' name='delCom' value='Verwijderen'>
                 </form>
             `;
             document.getElementById("displayArea").classList.remove("hidden");

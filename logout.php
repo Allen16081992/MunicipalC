@@ -21,7 +21,7 @@
 <body>
     <header>
         <div class="logo-container">
-        <a href="index.php"><img src="img/logo-base.svg" height="40" alt="Brand Signature"></a>
+        <a href="index.php"><img src="img/logo-hb.png" height="50" alt="Brand Signature"></a>
         </div>
         <nav>
             <ul>

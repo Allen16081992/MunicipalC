@@ -5,7 +5,18 @@
 
     $complaint = new ComplaintControl();
 
-    if (isset($_POST['creCom']) || isset($_POST['updCom'])) { // Create - Update
+    if (isset($_POST['creCom'])) { // Create - Update
+        // Store the submitted data in an array
+        $data = [
+            'name' => $_POST['name'],
+            'email' => $_POST['email'],
+            'title' => $_POST['title'],
+            'desc' => $_POST['desc'],
+            'location' => $_POST['location']
+        ];
+        $complaint->verifyComplaint($data);
+
+    } elseif (isset($_POST['updCom'])) {
         // Store the submitted data in an array
         $data = [
             'name' => $_POST['name'],
@@ -16,7 +27,6 @@
             'ID' => $_POST['ID']
         ];
         $complaint->verifyComplaint($data);
-
     } elseif (isset($_POST['delCom'])) { // Delete
         // Catch the submitted data
         $data = ['ID' => $_POST['ID'] ];

@@ -6,14 +6,24 @@
         use InputCheck;
 
         protected function setComplaint($name, $email, $title, $desc, $gps, $ID) {
-            // Split the coordinates using the comma as a delimiter
-            $splitCoords = explode(', ', $gps);
+            // Split the $gps value into two separate variables
+            $coordinates = explode(',', $gps);
 
-            // Remove any commas in each part
-            $latitude = str_replace(',', '', $splitCoords[0]);
-            $longitude = str_replace(',', '', $splitCoords[1]);
+            // Extract latitude and longitude
+            $latitude = $coordinates[0];
+            $longitude = $coordinates[1];
 
-            // If $ID is provided, it's an update; otherwise, it's a new complaint
+            if (isset($coordinates[0]) && isset($coordinates[1])) {
+                // Remove any commas in each part
+                $latitude = str_replace(',', '', $coordinates[0]);
+                $longitude = str_replace(',', '', $coordinates[1]);
+            } else {
+                // Display an error message if either latitude or longitude is missing
+                $_SESSION['success'] = 'No coordinates received.';
+                return;
+            }
+
+            //If $ID is provided, it's an update; otherwise, it's a new complaint
             if ($ID !== null) {
                 // Update the complaint
                 $stmt = $this->connect()->prepare("UPDATE klachten SET Naam = :name, Email = :email, Klacht = :title, Beschrijving = :desc, Breedtegraad = :latitude, Lengtegraad = :longitude WHERE ID = :ID;");

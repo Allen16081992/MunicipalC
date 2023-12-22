@@ -52,11 +52,14 @@
         
         private function invalidInput() {
             // Controleer of de invoer toegestaan is.
-            return !(
-                preg_match("/^[a-zA-Z]*$/", $this->name) &&
-                preg_match("/^[0-9.,]*$/", $this->gps)
-            );
-        }
+            if ($this->name && !preg_match("/^[a-zA-Z]*$/", $this->name)) {
+                return true; // Invalid characters found in name
+            }
+            if ($this->gps && !preg_match("/^[0-9.,]*$/", $this->gps)) {
+                return true; // Invalid characters found in gps
+            }
+            return false; // No invalid characters found
+        }        
 
         private function passwMatcher() {
             // /echo $this->pwd;

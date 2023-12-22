@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initializeMap() {
         // Initialize the map globally
-        map = L.map('map').setView([51.5765, 3.7727], 12);
+        map = L.map('map').setView([51.5765, 3.7727], 11);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initializeMarker() {
         // Initialize the map globally
-        var map = L.map('map').setView([51.5765, 3.7727], 12);
+        var map = L.map('map').setView([51.5765, 3.7727], 11);
     
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

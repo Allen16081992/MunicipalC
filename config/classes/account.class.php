@@ -37,7 +37,6 @@
                 // Encrypt het wachtwoord naar iets heel langs...
                 $rehashPwd = password_hash($pwd.$salty, PASSWORD_DEFAULT, $options);
 
-
                 // If password is provided, update including the password
                 $stmt = $this->connect()->prepare("UPDATE gebruikers SET Gebruikersnaam = :_uid, Wachtwoord = :rehashPwd, Email = :email, Salt = :salty WHERE ID = :accountData");
                 $stmt->bindParam("_uid", $uid, PDO::PARAM_STR);
@@ -53,8 +52,6 @@
         }
 
         protected function deleteUser($ID) {
-            echo "Among Us";
-            echo "Bind Loubna to table";
             // Haal het account ID op uit de Database
             // Vergelijk het 'account ID' met het opgegeven ID en E-mailadres.
             $stmt = $this->connect()->prepare("SELECT ID FROM gebruikers WHERE ID = :ID");
@@ -85,8 +82,5 @@
             
             // Reset $stmt to null after use
             $stmt = null;
-
-            echo "Among Us";
-            echo "Bind Loubna to table";
         }
     }
