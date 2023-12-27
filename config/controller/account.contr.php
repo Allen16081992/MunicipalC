@@ -24,9 +24,9 @@
                 if (!$this->passwMatcher()) {
                     // Wachtwoorden moeten gelijk zijn.
                     $_SESSION['error'] = 'Wachtwoorden zijn niet gelijk.';
-                } else 
+                } else {
                     $_SESSION['success'] = 'Wachtwoord zijn bijgewerkt.';
-                
+                }
             }
 
             // Voer overige controles uit

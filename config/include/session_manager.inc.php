@@ -15,7 +15,7 @@
         }
     }
 
-    // Webpage Content Generator Functions
+    // Webpage Navigation Generator
     function buildHeader() {
         if (!isset($_SESSION['gebruiker_id'])) {
             //$_SESSION['error'] = '401: Ongeautoriseerd Toegang. Log eerst in.';
@@ -39,6 +39,7 @@
         }
     }
 
+    // Webpage Content Generator
     function buildSections() {
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
@@ -98,6 +99,7 @@
         }
     }
 
+    // Webpage Content Generator (Admin)
     function buildManager($complaintsData, $userData) {
         echo "
             <section id='account'>

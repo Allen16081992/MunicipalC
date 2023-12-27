@@ -26,7 +26,6 @@
     <div class="logo-container">
       <a href="index.php"><img src="img/logo-hb.png" height="50" alt="Brand Signature"></a>
     </div>
-
     <nav>
       <?php buildHeader(); ?>
     </nav>
