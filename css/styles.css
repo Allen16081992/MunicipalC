@@ -143,13 +143,18 @@ td:hover { cursor: default; }
 }
 
 /* Loubna Faress */
-#home {
-  position: relative;
-  /* Set a height for #home to accommodate the background image */
-  height: 300px; /* Adjust as needed */
+.image {
+  display: flex;
+  align-items: center;
+  justify-content:center;
 }
-
+.image > img {
+  width: 80%;
+  height:auto;
+}
+#home > button {
+  width: 80%;
+}
 h2 {
-  margin-top: 1.5rem; /* To create space between background image and h2 */
-  /* Other styles for h2 */
+  margin-top: 1.5rem; 
 }

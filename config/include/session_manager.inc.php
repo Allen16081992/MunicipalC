@@ -19,9 +19,9 @@
     function buildHeader() {
         if (!isset($_SESSION['gebruiker_id'])) {
             //$_SESSION['error'] = '401: Ongeautoriseerd Toegang. Log eerst in.';
+            //<li><a href="#" data-section="home">Home</a></li>
             echo '
                 <ul>
-                    <li><a href="#" data-section="home">Home</a></li>
                     <li><a href="#" data-section="login">Inloggen</a></li>
                     <li><a href="#" data-section="signup">Registreren</a></li>
                     <li><a href="#" data-section="complaints">Melding Maken</a></li> 
@@ -44,9 +44,11 @@
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
-                    <img src="img/zeeland.jpg" alt="" width="300px" height="200px">
                     <h2>Welkom, Hoe kunnen wij u helpen?</h2>
-                    <p>Hier kunt u terecht met eventuele klachten en opmerkingen over uw omgeving.</p>
+                    <p>U kunt hier terecht met eventuele klachten of opmerkingen over uw omgeving.</p>
+                    <div class="image">
+                        <img src="img/zeeland.jpg" alt="" width="200">
+                    </div>
                     <button data-section="complaints">Ik wil iets melden</button>
                 </section>
             
@@ -79,10 +81,10 @@
                 </section>
             
                 <section id="complaints" class="hidden">
-                    <h2>Melding Maken</h2>
+                    <h2>Een melding maken</h2>
                     <!-- Complaints form goes here -->
                     <form action="config/complaint.conf.php" method="post">
-                        <label for="name">Volledige Naam</label>
+                        <label for="name">Naam Volledig</label>
                         <input type="text" name="name">
                         <label for="email">Email</label>
                         <input type="text" name="email">
