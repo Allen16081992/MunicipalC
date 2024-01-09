@@ -133,8 +133,11 @@
         }
         echo '</tr></thead><tbody>';
         // Display complaint data as table rows
+        $counter = 0; // Initialize counter
+        echo '</tr></tbody></table>
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <table><tbody>';
         foreach ($complaintsData['klachten'] as $complaint) {
-            $counter = 0; // Initialize counter
             if ($counter < 6) { // Limit to the first 6 results
                 echo '<tr>';
                 foreach ($complaint as $data) {
@@ -146,20 +149,19 @@
                 break; // Break out of the loop once 6 iterations are done
             }
         }
-        echo '</tbody></table>';
-
-        echo '</tr></tbody></table>
-            <div id="kiezen">
-                <form id="quickSearch" method="post">
-                    <label for="zoekbalk">Snelzoekfunctie:</label>
-                    <select name="zoekbalk" id="zoekbalk" onchange="submitForm()">
-                        <option value="default" selected>Selecteer een klacht...</option>';
-                    // Display complaint data as table rows
-                    foreach ($complaintsData['klachten'] as $complaint) {
-                        echo "<option name='zoekbalk' value='{$complaint['ID']}'>{$complaint['Klacht']}</option>";
-                    }                             
-        echo '      </select>
-                </form>
+        echo '</tbody></table>
+                </div>
+                <div id="kiezen">
+                    <form id="quickSearch" method="post">
+                        <label for="zoekbalk">Snelzoekfunctie:</label>
+                        <select name="zoekbalk" id="zoekbalk" onchange="submitForm()">
+                            <option value="default" selected>Selecteer een klacht...</option>';
+        // Display complaint data as table rows
+        foreach ($complaintsData['klachten'] as $complaint) {
+            echo "<option name='zoekbalk' value='{$complaint['ID']}'>{$complaint['Klacht']}</option>";
+        }                             
+        echo '</select>
+            </form>
             </div>
             <div id="map"></div>
             <div id="displayArea" class="complaint-card hidden">
@@ -168,5 +170,5 @@
                 <span></span>
                 <p></p>
             </div>
-        </section>';
+        </section>';                          
     }
