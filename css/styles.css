@@ -141,3 +141,15 @@ td:hover { cursor: default; }
     width: 50%; /* Adjust the width for landscape orientation */
   }
 }
+
+/* Loubna Faress */
+#home {
+  position: relative;
+  /* Set a height for #home to accommodate the background image */
+  height: 300px; /* Adjust as needed */
+}
+
+h2 {
+  margin-top: 1.5rem; /* To create space between background image and h2 */
+  /* Other styles for h2 */
+}

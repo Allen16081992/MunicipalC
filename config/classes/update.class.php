@@ -1,5 +1,10 @@
 <?php // Loubna Faress
-        require_once 'secure-db.class.php';    
+        require_once 'secure-db.class.php'; 
+        
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
         
     class User extends Database {
         private $ID;
@@ -30,38 +35,51 @@
 
         // Functie om een gebruiker te verwijderen
         public function deleteUser() {
-        $query = $this->connect()->prepare("DELETE FROM gebruikers WHERE ID = :ID");
-        $query->bindParam(':ID', $this->ID);
-        $query->execute();
-        echo "Gebruiker met ID " . $this->ID . " is verwijderd.\n";
+            try {
+                $query = $this->connect()->prepare("DELETE FROM gebruikers WHERE ID = :ID");
+                $query->bindParam(':ID', $this->ID);
+                $query->execute();
+                echo "Gebruiker met ID " . $this->ID . " is verwijderd.\n";
+            } catch (PDOException $e) {
+                echo "Fout bij het verwijderen van de gebruiker: " . $e->getMessage();
+            }
         }
+        
 
         // Functie om alle gebruikersgegevens weer te geven
         public function displayUserInfo() {
             echo "Gebruikersinformatie:\n";
             echo "gebruikers-ID: " . $this->ID . "\n";
-            echo "gebruikersnaam: " . $this->Gebruikersnaam . "\n";
+            // echo "gebruikersnaam: " . $this->Gebruikersnaam . "\n";
             echo "E-mailadres: " . $this->Email . "\n";
             // Let op: Wachtwoord wordt niet weergegeven om beveiligingsredenen
         }
     }
 
-    // Voorbeeldgebruik:
-    $user = new User(1, 'voorbeeldgebruiker', 'voorbeeld@email.com', 'wachtwoord123');
-    $user->displayUserInfo();
+    
+    // $user = new User($ID, $Naam, $Wachtwoord, $Email);
+    // $user->displayUserInfo();
 
     // Update van gebruikersgegevens
-    $user->updateEmail('nieuw@email.com');
-    $user->updateWachtwoord('nieuw_wachtwoord');
+    // $user->updateEmail('');
+    // $user->updateWachtwoord('nieuw_wachtwoord');
 
     // Gebruiker verwijderen
-    $user->deleteUser();
+    // $user->deleteUser();
     
-    if(isset($_POST["submit"])) {
-
-            $Naam = $_POST["uid"];
-            $Email = $_POST["email"];
-            $Wachtwoord = $_POST["pwd"];
-            $pwdRepeat = $_POST["pwdRepeat"];
-        }
+    if(isset($_POST["opslaan"])) {
+        // Verwerk het bijwerken van gebruikersgegevens
+        $Naam = $_POST["uid"];
+        $Email = $_POST["email"];
+        $Wachtwoord = $_POST["pwd"];
+        $pwdRepeat = $_POST["pwdRepeat"];
+    
+        // Voer hier de logica uit om gebruikersgegevens bij te werken
+        // Maak een object van de User-klasse en roep de update-methoden aan
+        // Bijvoorbeeld:
+        $user = new User($ID, $Naam, $Wachtwoord, $Email);
+        $user->updateEmail($Email);
+        $user->updateWachtwoord($Wachtwoord);
+    } elseif (isset($_POST["verwijder"])) {
+    }
 ?>

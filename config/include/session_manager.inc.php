@@ -44,6 +44,7 @@
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
+                    <img src="img/zeeland.jpg" alt="" width="300px" height="200px">
                     <h2>Welkom, Hoe kunnen wij u helpen?</h2>
                     <p>Hier kunt u terecht met eventuele klachten en opmerkingen over uw omgeving.</p>
                     <button data-section="complaints">Ik wil iets melden</button>
