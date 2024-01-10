@@ -163,11 +163,6 @@ body {
   background-color: rgb(94, 144, 101);
 }
 form > button {
-  background-color: navy;
-}
-form > button {
-  background-color: navy;
-}
-form > button {
+  width: 50%;
   background-color: navy;
 }
