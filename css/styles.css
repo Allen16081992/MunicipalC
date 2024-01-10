@@ -154,7 +154,20 @@ td:hover { cursor: default; }
 }
 #home > button {
   width: 80%;
+  background-color: navy;
 }
 h2 {
   margin-top: 1.5rem; 
+}
+body {
+  background-color: rgb(94, 144, 101);
+}
+form > button {
+  background-color: navy;
+}
+form > button {
+  background-color: navy;
+}
+form > button {
+  background-color: navy;
 }
