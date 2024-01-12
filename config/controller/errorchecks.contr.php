@@ -40,7 +40,8 @@
             // Controleer of niets is opgegeven.
             if (isset($this->pwd) && isset($this->pwdRepeat)) {
                 return !(empty($this->pwd) || empty($this->pwdRepeat));
-            } else {
+            } 
+            elseif(isset($this->pwd)) {
                 return !(empty($this->pwd));
             }
         }
