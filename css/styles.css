@@ -166,3 +166,14 @@ form > button {
   width: 50%;
   background-color: navy;
 }
+#blokje1 {
+  width: 1475px;
+  height: 200px;
+  background-color: lightslategray;
+}
+#blokje2 {
+  width: 1475px;
+  height: 200px;
+  background-color: lightslategray;
+  margin-top: 2rem; 
+}

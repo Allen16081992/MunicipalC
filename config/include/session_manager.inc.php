@@ -44,12 +44,14 @@
         if (!isset($_SESSION['gebruiker_id'])) {
             echo '
                 <section id="home">
+                    <div id="blokje1"></div>
                     <h2>Welkom, Hoe kunnen wij u helpen?</h2>
                     <p>U kunt hier terecht met eventuele klachten of opmerkingen over uw omgeving.</p>
                     <div class="image">
                         <img src="img/zeeland.jpg" alt="" width="200">
                     </div>
                     <button data-section="complaints">Ik wil iets melden</button>
+                    <div id="blokje2"></div>
                 </section>
             
                 <section id="login" class="hidden">
