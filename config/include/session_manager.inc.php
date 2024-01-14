@@ -54,6 +54,11 @@
                     <div id="blokje2" class="blocks"></div>
                     <div id="blokje3" class="blocks"></div>
                     <div id="blokje4" class="blocks"></div>
+                    <div id="A" class="block"></div>
+                    <div id="B" class="block"></div>
+                    <div id="C" class="block"></div>
+                    <div id="D" class="block"></div>
+                    <div id="E" class="block"></div>
                 </section>
             
                 <section id="login" class="hidden">
@@ -86,18 +91,19 @@
             
                 <section id="complaints" class="hidden">
                     <h2>Een melding maken</h2>
+                    <p>Velden met een * zijn verplicht.</p>
                     <!-- Complaints form goes here -->
                     <form action="config/complaint.conf.php" method="post">
-                        <label for="name">Naam Volledig</label>
+                        <label for="name">*Naam Volledig</label>
                         <input type="text" name="name">
-                        <label for="email">Email</label>
+                        <label for="email">*Emailadres</label>
                         <input type="text" name="email">
-                        <label for="title">Uw Klacht</label>
+                        <label for="title">*Uw klacht</label>
                         <input type="text" name="title">
-                        <label for="desc">Een korte beschrijving</label>
+                        <label for="desc">*Geef een korte omschrijving</label>
                         <textarea name="desc" rows="2"></textarea>
-                        <label for="location">Locatie</label>
-                        <input type="text" name="location" id="location" readonly>
+                        <label for="location">*Locatie</label>
+                        <input type="text" name="location" id="location" placeholder="Selecteer een locatie op de map hieronder." readonly>
                         <div id="map"></div>
                         <button type="submit" name="creCom">Verzenden</button>
                     </form> 
@@ -131,7 +137,8 @@
         echo '
             <section id="admin" class="hidden">
                 <h2>Klachten Paneel</h2>
-                <p>Klik op een markering om een klacht te bekijken.</p>
+                <p>Klik op een markering om een klacht te bekijken.<br>
+                   Gebruik de Snelzoekfunctie voor meer informatie over een klacht.</p>
                 <table><thead><tr>
         ';
         // Display column names as table headers

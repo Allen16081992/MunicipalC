@@ -1,4 +1,5 @@
 "use strict"; // Dhr. Allen Pieter
+// Single Page Application
 document.addEventListener('DOMContentLoaded', function () {
     // Get all navigation buttons
     var navButtons = document.querySelectorAll('nav ul li a');

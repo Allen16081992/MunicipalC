@@ -29,7 +29,7 @@ function submitForm() {
 
                     <input type="text" value="${data.Klacht}" name="title">
                     <textarea name="desc" rows="4" cols="50">${data.Beschrijving}</textarea>
-                    <input type="text" value="${data.Breedtegraad},${data.Lengtegraad}" name="location" readonly>
+                    <input type="hidden" value="${data.Breedtegraad},${data.Lengtegraad}" name="location" readonly>
                     <input type='submit' name='updCom' value='Wijzigen'>
                     <input type='submit' name='delCom' value='Verwijderen'>
                 </form>

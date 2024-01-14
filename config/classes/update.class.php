@@ -50,22 +50,22 @@
         public function displayUserInfo() {
             echo "Gebruikersinformatie:\n";
             echo "gebruikers-ID: " . $this->ID . "\n";
-            // echo "gebruikersnaam: " . $this->Gebruikersnaam . "\n";
+            echo "gebruikersnaam: " . $this->Gebruikersnaam . "\n";
             echo "E-mailadres: " . $this->Email . "\n";
             // Let op: Wachtwoord wordt niet weergegeven om beveiligingsredenen
         }
     }
 
     
-    // $user = new User($ID, $Naam, $Wachtwoord, $Email);
-    // $user->displayUserInfo();
+    $user = new User($ID, $Naam, $Wachtwoord, $Email);
+    $user->displayUserInfo();
 
     // Update van gebruikersgegevens
-    // $user->updateEmail('');
-    // $user->updateWachtwoord('nieuw_wachtwoord');
+    $user->updateEmail('');
+    $user->updateWachtwoord('nieuw_wachtwoord');
 
     // Gebruiker verwijderen
-    // $user->deleteUser();
+    $user->deleteUser();
     
     if(isset($_POST["opslaan"])) {
         // Verwerk het bijwerken van gebruikersgegevens

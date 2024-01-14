@@ -1,4 +1,5 @@
 "use strict"; // Dhr. Allen Pieter
+// GPS Coordinates
 document.addEventListener('DOMContentLoaded', function () {
     // Declare stuff
     var navButtons = document.querySelectorAll('nav ul li a');
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showSection(sectionId);
     }
 
-    // Add click event listeners to navigation buttons and the button inside the section
+    // Add click event listeners to navigation buttons
     navButtons.forEach(function (button) {
         button.addEventListener('click', handleButtonClick);
     });
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Add click event listener to the map
         map.on('click', function (e) {
-            // Update the input field with the clicked location's coordinates
+            // Update the input field 'location' with the clicked coordinates
             var locationInput = document.getElementById('location');
             locationInput.value = e.latlng.lat + ', ' + e.latlng.lng;
 
