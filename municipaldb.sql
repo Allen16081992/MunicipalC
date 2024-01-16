@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 jan 2024 om 22:00
+-- Gegenereerd op: 16 jan 2024 om 12:57
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -70,7 +70,8 @@ INSERT INTO `klachten` (`ID`, `Naam`, `Email`, `Klacht`, `Beschrijving`, `Breedt
 (4, 'Arnold Adeland', 'arnold.v.adeland@gmail.com', 'Aanval met Hond', 'Een moeder en kind van 7 zijn aangevallen door een hond. Beide zijn naar het ziekenhuis met verwondingen. Ze maken het goed.', 51.560433160161516, 3.796156474896169, '2024-01-01 19:30:40'),
 (5, 'Hoi', 'dave.kat@yahoo.com', 'Zekers', 'Natuurlijk', 51.594704024093055, 3.848720700025448, '2023-12-31 19:30:46'),
 (6, 'Niemand Anders', 'nima@yahoo.com', 'Meisje 27 Aangevallen', 'In Kats is voor de kerk een meisje vreselijk mishandeld, haar kleren afgescheurd, en de man ging vulgair te werk.', 51.56744323256543, 3.8845886074599183, '2024-01-05 19:30:53'),
-(22, 'Stefanie Volt', 'steffy.v.hartje98@hotmail.com', 'Kapotte Vuilnisbak', 'In de straat is er met vuurwerk geknoeid. De enigste vuilnisbak is kapot nu.', 51.56913889751355, 3.8854133245849907, '2013-12-31 19:32:28');
+(22, 'Stefanie Volt', 'steffy.v.hartje98@hotmail.com', 'Kapotte Vuilnisbak', 'In de straat is er met vuurwerk geknoeid. De enigste vuilnisbak is kapot nu.', 51.56913889751355, 3.8854133245849907, '2013-12-31 19:32:28'),
+(23, '<script>console.log(\'Hello World\');</script>', 'dave@gmail.com', 'Hello Carbunckle', '<script>console.log(\'Hello Zoro\');</script>', 51.581905479241755, 3.8144071433812963, '2024-01-15 13:35:02');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -102,7 +103,7 @@ ALTER TABLE `gebruikers`
 -- AUTO_INCREMENT voor een tabel `klachten`
 --
 ALTER TABLE `klachten`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
